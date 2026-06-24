@@ -7,15 +7,26 @@
 
 ## 安装与引入
 
-**A. CDN(最契合「双击即见」,零安装)**
+**A. CDN —— jsDelivr 直取 GitHub(当前分发方式,无需发 npm)**
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/x-proto-ui/dist/x-ui.css">
-<script src="https://unpkg.com/x-proto-ui/dist/x-ui.js"></script>
-<!-- 或锁版本:https://unpkg.com/x-proto-ui@0.1.0/dist/x-ui.js · jsDelivr 同理 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bosenger/x-proto-ui@v0.1.0/dist/x-ui.css">
+<script src="https://cdn.jsdelivr.net/gh/bosenger/x-proto-ui@v0.1.0/dist/x-ui.js"></script>
 ```
 
-**B. npm + 打包器**
+- `@v0.1.0` 锁 tag,URL 不可变、长期缓存(升级换成新 tag 即可);测试可用 `@main`(可变,缓存约 12h,刷新走 `purge.jsdelivr.net/gh/...`),或 `@<commit>` 钉死某次提交。
+- ⚠️ **jsDelivr 国内访问不稳定**;面向国内正式分发建议改用国内对象存储 + CDN(如阿里云 OSS+CDN,需备案)或 Gitee Pages,后续会补一个可同步的国内镜像。
+
+**B. 本地内嵌(零网络,原型离线 / 内部用首选)**
+
+把 `dist/` 拷进项目,两行本地引入,不依赖任何远端:
+
+```html
+<link rel="stylesheet" href="dist/x-ui.css">
+<script src="dist/x-ui.js"></script>
+```
+
+**C. npm + 打包器(若日后发布到 npm)**
 
 ```bash
 npm i x-proto-ui
@@ -24,13 +35,6 @@ npm i x-proto-ui
 ```js
 import 'x-proto-ui';        // 自执行,注册全部组件 + 初始化主题
 import 'x-proto-ui/css';    // 样式(= dist/x-ui.css)
-```
-
-**C. 本地 dist(无网络)**:把 `dist/` 拷到项目里,两行引入即可:
-
-```html
-<link rel="stylesheet" href="dist/x-ui.css">
-<script src="dist/x-ui.js"></script>
 ```
 
 直接双击打开:
@@ -61,16 +65,13 @@ npm publish              # publishConfig 已锁定公共 registry + access publi
 
 ### 自动发布(GitHub Actions)
 
-`.github/workflows/publish.yml` 已配好:**推 `v*.*.*` 标签即自动构建并发布**。
+> 当前走 jsDelivr/CDN 分发,**`v*` 标签只用于 CDN 版本化、不再自动发 npm**;`.github/workflows/publish.yml` 已改为**仅手动触发**(Actions 页 → Run workflow)。要恢复「推 v 标签即自动发布」,取消该文件 `on:` 里 `push.tags` 三行注释。
+
+启用 npm 发布时:
 
 1. 在 npm 生成一个 **Automation 令牌**(npmjs.com → Access Tokens),它能绕过 2FA OTP,专供 CI。
 2. 在 GitHub 仓库 **Settings → Secrets and variables → Actions** 添加 secret:`NPM_TOKEN`。
-3. 发版一条龙:
-
-   ```bash
-   npm version patch          # 改版本 + 本地打 tag(如 v0.1.1)
-   git push --follow-tags     # 推代码 + tag → 触发 workflow 自动发布
-   ```
+3. 发版:`npm version patch` 改版本打 tag → 在 Actions 页手动 Run(或恢复 tag 自动触发后 `git push --follow-tags`)。
 
 工作流会校验 **tag 与 package.json 版本一致**,并带 `--provenance`(供应链溯源,需公开仓库)。
 若 x-ui 作为 monorepo 子目录推到 GitHub,把该文件移到仓库根 `.github/workflows/` 并按文件内 `# monorepo:` 注释改两处路径。

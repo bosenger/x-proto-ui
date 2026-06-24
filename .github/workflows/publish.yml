@@ -11,10 +11,12 @@
 name: Publish to npm
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
-  workflow_dispatch: {}   # 允许手动触发
+  # 当前走 jsDelivr/CDN 分发,npm 暂不自动发布 → 仅保留手动触发。
+  workflow_dispatch: {}
+  # 若以后要「推 v 标签即自动发布到 npm」,取消下面三行注释即可:
+  # push:
+  #   tags:
+  #     - 'v*.*.*'
 
 permissions:
   contents: read
