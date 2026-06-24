@@ -1,0 +1,29 @@
+/* ============================================================
+   x-ui · Table 表格（语义 <table class="x-table">）
+   选择列 / 排序 / 状态(.x-tag) / 操作；密度 compact/默认/loose；窄屏横滚
+   ============================================================ */
+.x-table-wrap {
+  border: 1px solid var(--border); border-radius: 10px;
+  overflow: hidden; overflow-x: auto; background: var(--bg-surface);
+}
+.x-table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); color: var(--fg-base); }
+.x-table thead th {
+  background: var(--bg-subtle);
+  font-size: var(--fs-caption); color: var(--fg-muted); font-weight: 600;
+  text-align: left; white-space: nowrap; padding: 10px 14px;
+}
+.x-table tbody td { padding: 11px 14px; border-top: 1px solid var(--border); }
+.x-table tbody tr { transition: background var(--duration-fast); }
+.x-table tbody tr:hover { background: var(--bg-subtle); }
+.x-table tbody tr.is-selected { background: var(--brand-subtle); }
+.x-table--zebra tbody tr:nth-child(even):not(:hover):not(.is-selected) { background: var(--bg-base); }
+
+.x-table th.x-table__sort { cursor: pointer; }
+.x-table th.x-table__sort:hover { color: var(--fg-base); }
+.x-table__sort-ico { display: inline-flex; vertical-align: -2px; margin-left: 4px; color: var(--fg-subtle); }
+.x-table__action { color: var(--brand); cursor: pointer; }
+.x-table__action:hover { text-decoration: underline; }
+.x-table__col-check { width: 36px; }
+
+.x-table--compact thead th, .x-table--compact tbody td { padding: 7px 12px; }
+.x-table--loose thead th, .x-table--loose tbody td { padding: 14px 16px; }

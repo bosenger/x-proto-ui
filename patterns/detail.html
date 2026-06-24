@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" data-brand="neutral">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>x-ui 示例 · 详情页</title>
+  <link rel="stylesheet" href="../dist/x-ui.css">
+  <script src="../dist/x-ui.js" defer></script>
+  <style>
+    .ptop { position: fixed; inset: 0 0 auto 0; height: 56px; z-index: 50; display: flex; align-items: center; gap: 18px; padding: 0 22px; background: var(--bg-surface); border-bottom: 1px solid var(--border); }
+    .ptop .logo { width: 22px; height: 22px; border: 1.5px solid var(--accent); border-radius: 6px; }
+    .ptop .x-menu--horizontal { border: none; gap: 20px; }
+    .ptop .x-menu__item { padding: 18px 2px; text-decoration: none; }
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 84px 24px 60px; }
+    .kv { display: grid; grid-template-columns: 90px 1fr; gap: 12px 16px; font-size: 13px; }
+    .kv .k { color: var(--fg-muted); } .kv .v { color: var(--fg-base); }
+  </style>
+</head>
+<body>
+  <div class="ptop">
+    <div class="logo"></div><strong style="color:var(--accent)">x-ui</strong>
+    <nav class="x-menu--horizontal x-menu">
+      <a class="x-menu__item" href="list.html"><span>列表页</span></a>
+      <a class="x-menu__item" href="form.html"><span>表单页</span></a>
+      <a class="x-menu__item is-active" href="detail.html"><span>详情页</span></a>
+      <a class="x-menu__item" href="dashboard.html"><span>仪表盘</span></a>
+    </nav>
+    <div style="flex:1"></div>
+    <button class="x-btn x-btn--secondary x-btn--sm" onclick="xui.toggleTheme()">切换底纹</button>
+  </div>
+
+  <div class="wrap">
+    <div class="x-breadcrumb" style="margin-bottom:14px">
+      <a class="x-breadcrumb__item" href="list.html">任务列表</a><span class="x-breadcrumb__sep">/</span>
+      <span class="x-breadcrumb__item x-breadcrumb__item--current">用户中心同步</span>
+    </div>
+
+    <div style="display:flex;align-items:center;margin-bottom:18px">
+      <div style="display:flex;align-items:center;gap:12px"><div style="font-size:20px;font-weight:600">用户中心同步</div><span class="x-tag x-tag--pill x-tag--success">运行中</span></div>
+      <div style="margin-left:auto;display:flex;gap:10px">
+        <button class="x-btn x-btn--secondary x-btn--sm">编辑</button>
+        <button class="x-btn x-btn--sm" style="border-color:var(--danger);color:var(--danger)" onclick="document.getElementById('del').open()">删除</button>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.7fr 1fr;gap:16px">
+      <div class="x-card"><div class="x-card__body" style="padding:20px">
+        <div class="x-card__title" style="margin-bottom:14px">基本信息</div>
+        <div class="kv">
+          <span class="k">数据源</span><span class="v">user-db (主库)</span>
+          <span class="k">频率</span><span class="v">每日 00:00</span>
+          <span class="k">负责人</span><span class="v">李雷</span>
+          <span class="k">创建于</span><span class="v">2026-05-12</span>
+        </div>
+        <hr class="x-divider">
+        <div class="x-card__title" style="margin-bottom:14px">最近执行</div>
+        <div class="x-timeline">
+          <div class="x-timeline__item"><div class="x-timeline__rail"><span class="x-timeline__dot x-timeline__dot--success"></span><span class="x-timeline__line"></span></div><div class="x-timeline__content"><div class="x-timeline__title">同步成功 · 12,840 条</div><div class="x-timeline__time">06-23 00:00</div></div></div>
+          <div class="x-timeline__item"><div class="x-timeline__rail"><span class="x-timeline__dot x-timeline__dot--success"></span></div><div class="x-timeline__content"><div class="x-timeline__title">同步成功 · 12,790 条</div><div class="x-timeline__time">06-22 00:00</div></div></div>
+        </div>
+      </div></div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="x-card"><div class="x-card__body" style="padding:20px">
+          <div class="x-stat__label">成功率（30 天）</div>
+          <div class="x-stat__row"><span class="x-stat__value x-stat__value--md">99.6%</span><span class="x-stat__delta x-stat__delta--up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>0.3%</span></div>
+        </div></div>
+        <div class="x-card"><div class="x-card__body" style="padding:20px">
+          <div class="x-stat__label" style="margin-bottom:10px">负责人</div>
+          <div style="display:flex;align-items:center;gap:10px"><span class="x-avatar x-avatar--sm">李</span><div><div style="font-size:13px">李雷</div><div class="x-timeline__time">后端工程师</div></div></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <x-modal id="del" title="删除该任务？" size="sm" confirm ok-text="确认删除">删除后不可恢复，确定删除「用户中心同步」吗？</x-modal>
+  <script>addEventListener('DOMContentLoaded', () => document.getElementById('del').addEventListener('confirm', () => xui.toast.success('已删除')));</script>
+</body>
+</html>

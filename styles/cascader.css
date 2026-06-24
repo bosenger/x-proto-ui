@@ -1,0 +1,32 @@
+/* ============================================================
+   x-ui · Cascader 级联选择（<x-cascader> · 多列联动面板）
+   ============================================================ */
+x-cascader { display: inline-block; position: relative; width: 100%; max-width: 320px; }
+.x-cascader__trigger {
+  display: flex; align-items: center; height: var(--control-h-md); padding: 0 12px;
+  border-radius: var(--radius-control); border: 1px solid var(--border-strong);
+  background: var(--bg-surface); color: var(--fg-base); font-size: var(--fs-body); cursor: pointer;
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+}
+.x-cascader__trigger.is-open { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-subtle); }
+.x-cascader__placeholder { color: var(--fg-subtle); }
+.x-cascader__chev { margin-left: auto; color: var(--fg-subtle); transition: transform var(--duration-base); flex: none; }
+.x-cascader__trigger.is-open .x-cascader__chev { transform: rotate(180deg); }
+
+.x-cascader__panel {
+  position: absolute; top: calc(100% + 6px); left: 0; z-index: var(--z-popover);
+  display: flex; background: var(--bg-elevated);
+  border: 1px solid var(--border-strong); border-radius: 10px;
+  box-shadow: var(--shadow-md); overflow: hidden;
+}
+.x-cascader__panel[hidden] { display: none; }
+.x-cascader__col { width: 132px; padding: 6px; max-height: 240px; overflow: auto; }
+.x-cascader__col + .x-cascader__col { border-left: 1px solid var(--border); }
+.x-cascader__option {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 8px 10px; border-radius: 7px; font-size: var(--fs-sm);
+  color: var(--fg-muted); cursor: pointer;
+}
+.x-cascader__option:hover { background: var(--bg-subtle); }
+.x-cascader__option.is-active { background: var(--brand-subtle); color: var(--fg-base); font-weight: 600; }
+.x-cascader__option svg { width: 13px; height: 13px; flex: none; }

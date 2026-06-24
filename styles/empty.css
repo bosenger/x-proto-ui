@@ -1,0 +1,21 @@
+/* ============================================================
+   x-ui · Empty 空状态
+   .x-empty 图标 + 主文案 + 副文案 + 操作；--inline 简洁版
+   ============================================================ */
+.x-empty {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 14px 0; color: var(--fg-muted);
+}
+.x-empty__icon {
+  width: 64px; height: 46px; border-radius: 10px;
+  background: var(--bg-fill); border: 1px dashed var(--border-strong);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--fg-subtle); margin-bottom: 12px;
+}
+.x-empty__icon svg { width: 26px; height: 26px; }
+.x-empty__title { font-size: var(--fs-body); color: var(--fg-base); margin-bottom: 3px; }
+.x-empty__desc { font-size: var(--fs-caption); color: var(--fg-subtle); margin-bottom: 14px; }
+
+.x-empty--inline .x-empty__icon { width: 48px; height: 34px; margin-bottom: 10px; }
+.x-empty--inline .x-empty__icon svg { width: 20px; height: 20px; }
+.x-empty--inline .x-empty__desc { margin-bottom: 0; }

@@ -1,0 +1,18 @@
+/* ============================================================
+   x-ui · Pagination 分页（<x-pagination>）
+   上一页 / 页码（含省略号）/ 下一页；当前页主色高亮
+   ============================================================ */
+x-pagination { display: block; }
+.x-pagination { display: flex; align-items: center; gap: 6px; }
+.x-pagination__btn {
+  min-width: 34px; height: 34px; padding: 0 8px;
+  border-radius: 8px; border: 1px solid var(--border-strong);
+  background: var(--bg-surface); color: var(--fg-base);
+  font: 500 var(--fs-sm) var(--font-sans); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color var(--duration-fast), color var(--duration-fast);
+}
+.x-pagination__btn:hover:not(:disabled):not(.is-active) { border-color: var(--brand); color: var(--brand); }
+.x-pagination__btn.is-active { background: var(--brand); border-color: var(--brand); color: var(--brand-fg); cursor: default; }
+.x-pagination__btn:disabled { color: var(--fg-subtle); opacity: .55; cursor: not-allowed; }
+.x-pagination__ellipsis { color: var(--fg-subtle); padding: 0 2px; user-select: none; }

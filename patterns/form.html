@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" data-brand="neutral">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>x-ui 示例 · 表单页</title>
+  <link rel="stylesheet" href="../dist/x-ui.css">
+  <script src="../dist/x-ui.js" defer></script>
+  <style>
+    .ptop { position: fixed; inset: 0 0 auto 0; height: 56px; z-index: 50; display: flex; align-items: center; gap: 18px; padding: 0 22px; background: var(--bg-surface); border-bottom: 1px solid var(--border); }
+    .ptop .logo { width: 22px; height: 22px; border: 1.5px solid var(--accent); border-radius: 6px; }
+    .ptop .x-menu--horizontal { border: none; gap: 20px; }
+    .ptop .x-menu__item { padding: 18px 2px; text-decoration: none; }
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 84px 24px 60px; }
+  </style>
+</head>
+<body>
+  <div class="ptop">
+    <div class="logo"></div><strong style="color:var(--accent)">x-ui</strong>
+    <nav class="x-menu--horizontal x-menu">
+      <a class="x-menu__item" href="list.html"><span>列表页</span></a>
+      <a class="x-menu__item is-active" href="form.html"><span>表单页</span></a>
+      <a class="x-menu__item" href="detail.html"><span>详情页</span></a>
+      <a class="x-menu__item" href="dashboard.html"><span>仪表盘</span></a>
+    </nav>
+    <div style="flex:1"></div>
+    <button class="x-btn x-btn--secondary x-btn--sm" onclick="xui.toggleTheme()">切换底纹</button>
+  </div>
+
+  <div class="wrap">
+    <div class="x-breadcrumb" style="margin-bottom:14px">
+      <a class="x-breadcrumb__item" href="list.html">任务列表</a><span class="x-breadcrumb__sep">/</span>
+      <span class="x-breadcrumb__item x-breadcrumb__item--current">新建任务</span>
+    </div>
+
+    <div class="x-card" style="max-width:640px">
+      <div class="x-card__body" style="padding:24px">
+        <div style="font-size:18px;font-weight:600;margin-bottom:20px">新建同步任务</div>
+
+        <div class="x-form__section">基本信息</div>
+        <div class="x-form__item"><label class="x-form__label"><span class="x-form__required">*</span>任务名称</label><input class="x-input" placeholder="请输入任务名称"></div>
+        <div class="x-grid x-grid--2">
+          <div class="x-form__item"><label class="x-form__label"><span class="x-form__required">*</span>数据源</label><x-select placeholder="请选择" style="max-width:100%"><option>user-db (主库)</option><option>order-db</option></x-select></div>
+          <div class="x-form__item"><label class="x-form__label">执行频率</label><x-select placeholder="请选择" style="max-width:100%"><option selected>每日</option><option>每周</option><option>每月</option></x-select></div>
+        </div>
+
+        <div class="x-form__section" style="margin-top:4px">高级选项</div>
+        <div class="x-form__item"><label class="x-switch-field"><input type="checkbox" class="x-switch" checked><span style="color:var(--fg-base);font-size:14px">失败时邮件通知</span></label></div>
+        <div class="x-form__item"><label class="x-form__label">备注</label><textarea class="x-textarea" rows="3" placeholder="选填……"></textarea></div>
+
+        <div class="x-form__footer">
+          <a class="x-btn x-btn--secondary" href="list.html">取消</a>
+          <button class="x-btn x-btn--primary" onclick="xui.toast.success('任务已创建')">创建任务</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

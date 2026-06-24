@@ -1,0 +1,48 @@
+/* ============================================================
+   x-ui · 基础层（reset / 全局 / 跨页过渡）
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--fg-base);
+  background: var(--bg-base);
+  transition: background var(--duration-slow), color var(--duration-slow);
+}
+
+svg { stroke-linecap: round; stroke-linejoin: round; }
+
+/* 一行启用跨文档视图过渡（R6 多页平滑跳转，零 JS）*/
+@view-transition { navigation: auto; }
+
+/* 滚动条 */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 6px;
+  border: 2px solid var(--bg-base);
+}
+
+/* 统一焦点环：键盘可见、鼠标不打扰 */
+:where(button, a, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* 通用关键帧 */
+@keyframes x-spin { to { transform: rotate(360deg); } }
+@keyframes x-shimmer { 0% { background-position: -300px 0; } 100% { background-position: 300px 0; } }
+
+/* 尊重 reduced-motion：仅保留透明度类微动效 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .12s !important;
+  }
+}

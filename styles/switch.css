@@ -1,0 +1,40 @@
+/* ============================================================
+   x-ui · Switch 开关（原生 input[type=checkbox]，两态即时）
+   默认 40×22；--sm 30×16；可禁用 / 加载（--loading）；.x-switch-field 带文字
+   关态轨透明 + 灰圆点；开态主色轨 + 白圆点
+   ============================================================ */
+.x-switch {
+  appearance: none; -webkit-appearance: none;
+  position: relative; flex: none;
+  width: 40px; height: 22px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  cursor: pointer;
+  transition: background var(--duration-base), border-color var(--duration-base);
+}
+.x-switch::after {
+  content: ""; position: absolute; top: 2px; left: 2px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--border-strong);
+  transition: left var(--duration-base), background var(--duration-base);
+}
+.x-switch:checked { background: var(--brand); border-color: var(--brand); }
+.x-switch:checked::after { left: 20px; background: var(--brand-fg); }
+.x-switch:disabled { opacity: .45; cursor: not-allowed; }
+.x-switch:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--brand-subtle); }
+
+/* 小尺寸 */
+.x-switch--sm { width: 30px; height: 16px; }
+.x-switch--sm::after { width: 12px; height: 12px; }
+.x-switch--sm:checked::after { left: 15px; }
+
+/* 加载态：圆点替换为转圈 */
+.x-switch--loading::after {
+  background: transparent;
+  border: 1.6px solid var(--brand-fg); border-top-color: transparent;
+  animation: x-spin .7s linear infinite;
+}
+.x-switch--loading:not(:checked)::after { border-color: var(--border-strong); border-top-color: transparent; }
+
+.x-switch-field { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; font-size: var(--fs-sm); color: var(--fg-muted); }

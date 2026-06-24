@@ -1,0 +1,55 @@
+/* ============================================================
+   x-ui · CSS 入口（作者侧）—— esbuild 合并成 dist/x-ui.css
+   顺序即三层结构：L1 令牌 → L2 主题 → L3 基础 + 组件
+   ============================================================ */
+@import "../tokens/palette.css";
+@import "../tokens/themes.css";
+@import "../styles/base.css";
+
+/* P0 基础 */
+@import "../styles/button.css";
+@import "../styles/input.css";
+@import "../styles/select.css";
+@import "../styles/checkbox.css";
+@import "../styles/radio.css";
+@import "../styles/switch.css";
+@import "../styles/card.css";
+@import "../styles/tag.css";
+@import "../styles/avatar.css";
+@import "../styles/divider.css";
+@import "../styles/grid.css";
+@import "../styles/icon.css";
+
+/* P1 交互 */
+@import "../styles/tabs.css";
+@import "../styles/accordion.css";
+@import "../styles/dropdown.css";
+@import "../styles/modal.css";
+@import "../styles/drawer.css";
+@import "../styles/toast.css";
+@import "../styles/tooltip.css";
+@import "../styles/pagination.css";
+@import "../styles/breadcrumb.css";
+@import "../styles/steps.css";
+
+/* P2 数据 */
+@import "../styles/table.css";
+@import "../styles/progress.css";
+@import "../styles/skeleton.css";
+@import "../styles/empty.css";
+@import "../styles/tree.css";
+@import "../styles/timeline.css";
+@import "../styles/stat.css";
+
+/* P3 高级 */
+@import "../styles/datepicker.css";
+@import "../styles/upload.css";
+@import "../styles/form.css";
+@import "../styles/cascader.css";
+
+/* P4 扩展 */
+@import "../styles/alert.css";
+@import "../styles/input-number.css";
+@import "../styles/slider.css";
+@import "../styles/menu.css";
+@import "../styles/spin.css";

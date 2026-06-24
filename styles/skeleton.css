@@ -1,0 +1,16 @@
+/* ============================================================
+   x-ui · Skeleton 骨架屏（微光 shimmer，reduced-motion 下转静态）
+   .x-skeleton + 形态修饰：--text / --title / --avatar / --circle / --block
+   ============================================================ */
+.x-skeleton {
+  background: linear-gradient(90deg, var(--bg-fill) 25%, var(--bg-subtle) 37%, var(--bg-fill) 63%);
+  background-size: 400px 100%;
+  animation: x-shimmer 1.4s infinite linear;
+  border-radius: 4px;
+}
+.x-skeleton--text { height: 9px; }
+.x-skeleton--text + .x-skeleton--text { margin-top: 8px; }
+.x-skeleton--title { height: 14px; width: 40%; }
+.x-skeleton--avatar { width: 46px; height: 46px; border-radius: 50%; flex: none; }
+.x-skeleton--circle { border-radius: 50%; }
+.x-skeleton--block { height: 80px; border-radius: 10px; }

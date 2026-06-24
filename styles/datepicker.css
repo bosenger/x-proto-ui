@@ -1,0 +1,39 @@
+/* ============================================================
+   x-ui · DatePicker 日期选择（<x-datepicker> · 面板 Popover）
+   今天描边、选中实底；月份切换
+   ============================================================ */
+x-datepicker { display: inline-block; position: relative; }
+.x-datepicker__input {
+  display: flex; align-items: center; gap: 9px;
+  height: var(--control-h-md); min-width: 200px; padding: 0 12px;
+  border-radius: var(--radius-control); border: 1px solid var(--border-strong);
+  background: var(--bg-surface); color: var(--fg-base); font-size: var(--fs-body); cursor: pointer;
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+}
+.x-datepicker__input.is-open { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-subtle); }
+.x-datepicker__input svg { color: var(--fg-muted); flex: none; }
+
+.x-datepicker__panel {
+  position: absolute; top: calc(100% + 6px); left: 0; z-index: var(--z-popover);
+  width: 268px; padding: 14px;
+  background: var(--bg-elevated); border: 1px solid var(--border-strong);
+  border-radius: 12px; box-shadow: var(--shadow-md);
+}
+.x-datepicker__panel[hidden] { display: none; }
+.x-datepicker__head { display: flex; align-items: center; margin-bottom: 10px; }
+.x-datepicker__nav { display: flex; padding: 4px; border-radius: 6px; cursor: pointer; color: var(--fg-muted); }
+.x-datepicker__nav:hover { background: var(--bg-subtle); color: var(--fg-base); }
+.x-datepicker__title { flex: 1; text-align: center; font-size: var(--fs-body); font-weight: 600; color: var(--fg-base); }
+.x-datepicker__weekdays { display: grid; grid-template-columns: repeat(7, 1fr); margin-bottom: 4px; }
+.x-datepicker__weekday { text-align: center; font-size: 11px; color: var(--fg-subtle); padding: 4px 0; }
+.x-datepicker__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.x-datepicker__day {
+  height: 32px; display: flex; align-items: center; justify-content: center;
+  border-radius: 7px; font-size: var(--fs-sm); cursor: pointer;
+  border: 1px solid transparent; color: var(--fg-base);
+}
+.x-datepicker__day:hover { background: var(--bg-subtle); }
+.x-datepicker__day--blank { visibility: hidden; }
+.x-datepicker__day--today { border-color: var(--brand); }
+.x-datepicker__day--selected { background: var(--brand); color: var(--brand-fg); }
+.x-datepicker__day--selected:hover { background: var(--brand); }

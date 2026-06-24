@@ -1,0 +1,46 @@
+/* ============================================================
+   x-ui · Drawer 抽屉（<x-drawer> + 原生 <dialog>）
+   四方位 right(默认)/left/top/bottom；点遮罩 / Esc 关闭
+   ============================================================ */
+x-drawer { display: contents; }
+
+.x-drawer-dialog {
+  position: fixed; margin: 0; padding: 0; border: none;
+  background: var(--bg-elevated); color: var(--fg-base);
+  box-shadow: var(--shadow-lg);
+  display: flex; flex-direction: column;
+  max-width: 100vw; max-height: 100vh;
+}
+.x-drawer-dialog::backdrop { background: rgba(0, 0, 0, .45); }
+
+/* 方位 + 进入动效 */
+.x-drawer-dialog[data-placement="right"] { inset: 0 0 0 auto; height: 100vh; width: 400px; animation: x-drawer-r var(--duration-slow) var(--ease-standard); }
+.x-drawer-dialog[data-placement="left"]  { inset: 0 auto 0 0; height: 100vh; width: 400px; animation: x-drawer-l var(--duration-slow) var(--ease-standard); }
+.x-drawer-dialog[data-placement="top"]    { inset: 0 0 auto 0; width: 100vw; height: 320px; animation: x-drawer-t var(--duration-slow) var(--ease-standard); }
+.x-drawer-dialog[data-placement="bottom"] { inset: auto 0 0 0; width: 100vw; height: 320px; animation: x-drawer-b var(--duration-slow) var(--ease-standard); }
+.x-drawer-dialog[data-size="sm"] { width: 320px; }
+.x-drawer-dialog[data-size="lg"] { width: 560px; }
+
+@keyframes x-drawer-r { from { transform: translateX(100%); } }
+@keyframes x-drawer-l { from { transform: translateX(-100%); } }
+@keyframes x-drawer-t { from { transform: translateY(-100%); } }
+@keyframes x-drawer-b { from { transform: translateY(100%); } }
+
+.x-drawer__head {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--border);
+}
+.x-drawer__title { margin: 0; font-size: var(--fs-h3); font-weight: 600; flex: 1; }
+.x-drawer__close {
+  display: flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; margin: -4px -8px -4px 0;
+  border: none; border-radius: var(--radius-md);
+  background: transparent; color: var(--fg-subtle); cursor: pointer;
+}
+.x-drawer__close:hover { background: var(--bg-subtle); color: var(--fg-base); }
+.x-drawer__body { flex: 1; overflow: auto; padding: var(--space-5); color: var(--fg-muted); line-height: var(--lh-body); }
+.x-drawer__foot { display: flex; justify-content: flex-end; gap: var(--space-3); padding: var(--space-4) var(--space-5); border-top: 1px solid var(--border); }
+
+@media (max-width: 640px) {
+  .x-drawer-dialog[data-placement="right"], .x-drawer-dialog[data-placement="left"] { width: 84vw; }
+}

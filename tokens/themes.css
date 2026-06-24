@@ -1,0 +1,80 @@
+/* ============================================================
+   x-ui · L2 语义 Token（Semantic）—— 换肤的唯一开关
+   维度正交：data-theme（纸面/蓝图） × data-brand（中性/蓝/青/紫）
+   组件只消费本层；切 data-theme / data-brand 即全库联动。
+   取值来源：x-ui 设计说明书.dc.html（设计师定稿）
+   ============================================================ */
+
+/* —— 明暗维度：纸面 light（默认）—— */
+:root,
+[data-theme="light"] {
+  --bg-base: #FAFAFA;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F0F0F0;
+  --bg-fill: #E6E6E6;
+  --bg-fill-strong: #D8D8D8;
+  --bg-elevated: #FFFFFF;
+
+  --fg-base: #2E2E2E;
+  --fg-muted: #6E6E6E;
+  --fg-subtle: #9E9E9E;
+
+  --border: #E2E2E2;
+  --border-strong: #CFCFCF;
+
+  /* 状态色 · 降饱和保留 */
+  --success: #4E8A5E; --success-subtle: #E6EFE8;
+  --warning: #A88242; --warning-subtle: #F1E9D9;
+  --danger:  #B05656; --danger-subtle:  #F2E5E5;
+  --info:    #5B7C9E; --info-subtle:    #E6ECF2;
+
+  --ink-bar: #5A6068;     /* tabs 指示条 / 强调线 */
+  --accent:  #2E8C8C;     /* 品牌点缀（logo 等）*/
+
+  --shadow-md: 0 4px 14px rgba(40, 40, 40, .10);
+  --shadow-lg: 0 14px 36px rgba(40, 40, 40, .18);
+
+  --brand-fg: #FFFFFF;    /* 主色底上的文字 */
+}
+
+/* —— 明暗维度：蓝图 dark —— */
+[data-theme="dark"] {
+  --bg-base: #1C1F24;
+  --bg-surface: #24272E;
+  --bg-subtle: #2C3036;
+  --bg-fill: #343941;
+  --bg-fill-strong: #3E444D;
+  --bg-elevated: #2A2E36;
+
+  --fg-base: #E6E8EB;
+  --fg-muted: #A8ADB5;
+  --fg-subtle: #6E747C;
+
+  --border: #343941;
+  --border-strong: #444A53;
+
+  --success: #7FA98B; --success-subtle: rgba(127, 169, 139, .18);
+  --warning: #C2A56B; --warning-subtle: rgba(194, 165, 107, .18);
+  --danger:  #C98B8B; --danger-subtle:  rgba(201, 139, 139, .18);
+  --info:    #8AA6C2; --info-subtle:    rgba(138, 166, 194, .18);
+
+  --ink-bar: #0F1115;
+  --accent:  #4FB3B3;
+
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, .5);
+  --shadow-lg: 0 14px 36px rgba(0, 0, 0, .6);
+}
+
+/* —— 主色维度（默认 中性 neutral）：纸面取值 —— */
+:root,
+[data-brand="neutral"] { --brand: #565656; --brand-subtle: #E6E6E6; }
+[data-brand="blue"]    { --brand: #4F6F9E; --brand-subtle: #E4EAF1; }
+[data-brand="teal"]    { --brand: #3E8E8E; --brand-subtle: #E0EDED; }
+[data-brand="violet"]  { --brand: #7A6BA8; --brand-subtle: #EAE6F1; }
+
+/* —— 主色维度：蓝图覆盖（dark 下提亮 + 透明浅底）—— */
+[data-theme="dark"][data-brand="neutral"] { --brand: #5A616B; --brand-subtle: #343941; }
+[data-theme="dark"]                        { --brand: #5A616B; --brand-subtle: #343941; } /* dark 默认即中性 */
+[data-theme="dark"][data-brand="blue"]     { --brand: #6486B5; --brand-subtle: rgba(100, 134, 181, .20); }
+[data-theme="dark"][data-brand="teal"]     { --brand: #54A6A6; --brand-subtle: rgba(84, 166, 166, .20); }
+[data-theme="dark"][data-brand="violet"]   { --brand: #9384BE; --brand-subtle: rgba(147, 132, 190, .20); }

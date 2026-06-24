@@ -1,0 +1,46 @@
+/* ============================================================
+   x-ui · Menu 导航菜单（纵向内嵌 + 横向顶栏）
+   纵向：.x-menu > .x-menu__item / 可展开 <details class="x-menu__sub">
+   横向：.x-menu--horizontal
+   选中项主色高亮（.is-active）
+   ============================================================ */
+.x-menu { display: flex; flex-direction: column; gap: 2px; }
+.x-menu__item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 11px; border-radius: 8px;
+  font-size: var(--fs-body); color: var(--fg-muted); cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: background var(--duration-fast), color var(--duration-fast);
+}
+.x-menu__item:hover { background: var(--bg-subtle); color: var(--fg-base); }
+.x-menu__item.is-active { background: var(--brand-subtle); color: var(--fg-base); font-weight: 500; border-left-color: var(--brand); }
+.x-menu__item svg { flex: none; }
+.x-menu__item > span { flex: 1; }
+
+/* 可展开子菜单（原生 details） */
+.x-menu__sub { }
+.x-menu__sub > summary {
+  display: flex; align-items: center; gap: 10px; list-style: none;
+  padding: 9px 11px; border-radius: 8px;
+  font-size: var(--fs-body); color: var(--fg-muted); cursor: pointer;
+}
+.x-menu__sub > summary::-webkit-details-marker { display: none; }
+.x-menu__sub > summary:hover { background: var(--bg-subtle); color: var(--fg-base); }
+.x-menu__sub > summary > span { flex: 1; }
+.x-menu__sub-chev { margin-left: auto; transition: transform var(--duration-base); flex: none; }
+.x-menu__sub[open] > summary .x-menu__sub-chev { transform: rotate(90deg); }
+.x-menu__sub-body { display: flex; flex-direction: column; gap: 2px; padding: 2px 0 2px 34px; }
+.x-menu__sub-item { padding: 8px 11px; border-radius: 7px; font-size: var(--fs-sm); color: var(--fg-muted); cursor: pointer; }
+.x-menu__sub-item:hover { background: var(--bg-subtle); color: var(--fg-base); }
+.x-menu__sub-item.is-active { color: var(--brand); font-weight: 500; }
+
+/* 横向顶栏 */
+.x-menu--horizontal { flex-direction: row; gap: 24px; border-bottom: 1px solid var(--border); }
+.x-menu--horizontal .x-menu__item {
+  border-left: none; border-radius: 0; padding: 12px 2px; background: transparent; position: relative;
+}
+.x-menu--horizontal .x-menu__item:hover { background: transparent; color: var(--fg-base); }
+.x-menu--horizontal .x-menu__item.is-active { background: transparent; color: var(--brand); font-weight: 600; }
+.x-menu--horizontal .x-menu__item.is-active::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--brand);
+}

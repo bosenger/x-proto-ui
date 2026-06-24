@@ -1,0 +1,20 @@
+/* ============================================================
+   x-ui · Spin 加载中
+   .x-spin 圆环；尺寸 --sm/--lg；.x-spin-inline 带文字；.x-spin-overlay 遮罩
+   ============================================================ */
+.x-spin {
+  display: inline-block; width: 24px; height: 24px; border-radius: 50%;
+  border: 2.5px solid var(--bg-fill); border-top-color: var(--brand);
+  animation: x-spin .8s linear infinite;
+}
+.x-spin--sm { width: 16px; height: 16px; border-width: 2px; }
+.x-spin--lg { width: 36px; height: 36px; border-width: 3px; }
+
+.x-spin-inline { display: inline-flex; align-items: center; gap: 10px; color: var(--brand); font-size: var(--fs-caption); }
+
+.x-spin-overlay { position: relative; }
+.x-spin-overlay__mask {
+  position: absolute; inset: 0; border-radius: inherit;
+  background: var(--bg-surface); opacity: .6;
+  display: flex; align-items: center; justify-content: center;
+}

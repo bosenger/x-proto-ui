@@ -1,0 +1,37 @@
+/* ============================================================
+   x-ui · Grid 栅格（12 列）
+   .x-row + .x-col--N（N=1..12）；或快捷 .x-grid--2/3/4 等分
+   gutter 默认 16，桌面可用 --lg-24
+   ============================================================ */
+.x-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4);
+}
+.x-row--gutter-lg { gap: var(--space-6); }
+
+.x-col-1  { grid-column: span 1; }
+.x-col-2  { grid-column: span 2; }
+.x-col-3  { grid-column: span 3; }
+.x-col-4  { grid-column: span 4; }
+.x-col-5  { grid-column: span 5; }
+.x-col-6  { grid-column: span 6; }
+.x-col-7  { grid-column: span 7; }
+.x-col-8  { grid-column: span 8; }
+.x-col-9  { grid-column: span 9; }
+.x-col-10 { grid-column: span 10; }
+.x-col-11 { grid-column: span 11; }
+.x-col-12 { grid-column: span 12; }
+
+/* 快捷等分 */
+.x-grid { display: grid; gap: var(--space-4); }
+.x-grid--2 { grid-template-columns: repeat(2, 1fr); }
+.x-grid--3 { grid-template-columns: repeat(3, 1fr); }
+.x-grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+/* 向下适配：窄屏整列堆叠 */
+@media (max-width: 640px) {
+  .x-row { grid-template-columns: 1fr; }
+  [class*="x-col-"] { grid-column: 1 / -1; }
+  .x-grid--2, .x-grid--3, .x-grid--4 { grid-template-columns: 1fr; }
+}

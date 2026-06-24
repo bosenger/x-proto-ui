@@ -1,0 +1,39 @@
+/* ============================================================
+   x-ui · Upload 上传（<x-upload> · 拖拽区 + 文件项）
+   文件状态：上传中(进度) / 完成(勾) / 可删除
+   ============================================================ */
+x-upload { display: block; }
+.x-upload__drop {
+  border: 1.5px dashed var(--border-strong); border-radius: 12px;
+  padding: 26px; text-align: center; background: var(--bg-base); cursor: pointer;
+  transition: border-color var(--duration-fast), background var(--duration-fast);
+}
+.x-upload__drop:hover, .x-upload__drop.is-dragover { border-color: var(--brand); background: var(--brand-subtle); }
+.x-upload__icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--bg-fill); border: 1px solid var(--border-strong);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--fg-muted); margin: 0 auto 12px;
+}
+.x-upload__title { font-size: var(--fs-body); color: var(--fg-base); margin-bottom: 4px; }
+.x-upload__hint { font-size: var(--fs-caption); color: var(--fg-subtle); }
+
+.x-upload__list { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+.x-upload__file {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px;
+}
+.x-upload__file-ico {
+  width: 32px; height: 32px; border-radius: 8px; flex: none;
+  background: var(--bg-fill); border: 1px solid var(--border-strong);
+  display: flex; align-items: center; justify-content: center; color: var(--fg-subtle);
+}
+.x-upload__file-main { flex: 1; min-width: 0; }
+.x-upload__file-name { font-size: var(--fs-sm); color: var(--fg-base); margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.x-upload__file-bar { height: 5px; border-radius: var(--radius-full); background: var(--bg-fill); overflow: hidden; }
+.x-upload__file-bar > div { height: 100%; border-radius: var(--radius-full); background: var(--brand); transition: width var(--duration-base); }
+.x-upload__file--done .x-upload__file-bar > div { background: var(--success); }
+.x-upload__pct { font-family: var(--mono); font-size: 11px; color: var(--brand); flex: none; }
+.x-upload__done { color: var(--success); display: flex; flex: none; }
+.x-upload__remove { border: none; background: transparent; color: var(--fg-subtle); cursor: pointer; display: flex; flex: none; padding: 2px; border-radius: 5px; }
+.x-upload__remove:hover { background: var(--bg-subtle); color: var(--danger); }

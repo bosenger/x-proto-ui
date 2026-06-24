@@ -1,0 +1,34 @@
+/* ============================================================
+   x-ui · Alert 警告提示（常驻页面，区别于飘出的 Toast）
+   四语义；可带描述(--with-desc) / 操作 / 关闭([data-x-close])
+   ============================================================ */
+.x-alert {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 14px; border-radius: 10px;
+  border: 1px solid var(--info); background: var(--info-subtle);
+}
+.x-alert--success { border-color: var(--success); background: var(--success-subtle); }
+.x-alert--warning { border-color: var(--warning); background: var(--warning-subtle); }
+.x-alert--danger  { border-color: var(--danger);  background: var(--danger-subtle); }
+.x-alert--info    { border-color: var(--info);    background: var(--info-subtle); }
+
+.x-alert__icon { flex: none; display: flex; color: var(--info); }
+.x-alert--success .x-alert__icon { color: var(--success); }
+.x-alert--warning .x-alert__icon { color: var(--warning); }
+.x-alert--danger .x-alert__icon  { color: var(--danger); }
+
+.x-alert__body { flex: 1; min-width: 0; }
+.x-alert__msg { font-size: 13.5px; color: var(--fg-base); }
+.x-alert__title { font-size: var(--fs-body); font-weight: 600; color: var(--fg-base); margin-bottom: 2px; }
+.x-alert__desc { font-size: var(--fs-sm); line-height: 1.6; color: var(--fg-muted); }
+
+.x-alert--with-desc { align-items: flex-start; padding: 13px 14px; }
+.x-alert--with-desc .x-alert__icon { margin-top: 1px; }
+
+.x-alert__action { flex: none; }
+.x-alert__close {
+  flex: none; width: 24px; height: 24px; padding: 0;
+  border: none; background: transparent; color: var(--fg-subtle); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; border-radius: 6px;
+}
+.x-alert__close:hover { background: var(--bg-subtle); color: var(--fg-base); }

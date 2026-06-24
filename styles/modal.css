@@ -1,0 +1,60 @@
+/* ============================================================
+   x-ui · Modal（弹层型 · <x-modal> + 原生 <dialog>）
+   原生底座：顶层渲染、自带遮罩、Esc 关闭、焦点陷阱
+   尺寸：sm 400 / md 520（默认）/ lg 720    形态：标准 / 危险确认
+   ============================================================ */
+x-modal { display: contents; }
+
+.x-dialog {
+  width: 520px; max-width: calc(100vw - 32px);
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  color: var(--fg-base);
+  box-shadow: var(--shadow-lg);
+}
+.x-dialog[data-size="sm"] { width: 400px; }
+.x-dialog[data-size="lg"] { width: 720px; }
+
+.x-dialog::backdrop { background: rgba(0, 0, 0, .45); }
+
+/* 进入动效 */
+.x-dialog[open] { animation: x-dialog-in var(--duration-slow) var(--ease-standard); }
+@keyframes x-dialog-in {
+  from { opacity: 0; transform: translateY(8px) scale(.98); }
+  to   { opacity: 1; transform: none; }
+}
+
+.x-dialog__head {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border);
+}
+.x-dialog__title { margin: 0; font-size: var(--fs-h3); font-weight: 600; flex: 1; }
+.x-dialog__close {
+  display: flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; margin: -4px -8px -4px 0;
+  border: none; border-radius: var(--radius-md);
+  background: transparent; color: var(--fg-subtle); cursor: pointer;
+}
+.x-dialog__close:hover { background: var(--bg-subtle); color: var(--fg-base); }
+
+.x-dialog__body { padding: var(--space-5); color: var(--fg-muted); line-height: var(--lh-body); }
+
+.x-dialog__foot {
+  display: flex; justify-content: flex-end; gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--border);
+}
+
+/* 危险确认形态：标题区带状态图标，确认按钮转危险色 */
+.x-dialog--confirm .x-dialog__title { color: var(--danger); }
+
+/* 窄屏转底部弹出 */
+@media (max-width: 640px) {
+  .x-dialog, .x-dialog[data-size="sm"], .x-dialog[data-size="lg"] {
+    width: 100%; max-width: 100%;
+    margin: auto 0 0; border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+}

@@ -1,0 +1,28 @@
+/* ============================================================
+   x-ui · Divider 分割线
+   .x-divider 水平实线；--dashed 虚线；含文字（__text 居中 / --left）；
+   .x-divider--vertical 竖向（行内操作分隔）
+   ============================================================ */
+.x-divider {
+  height: 1px; border: 0; border-top: 1px solid var(--border);
+  margin: var(--space-4) 0;
+}
+.x-divider--dashed { border-top-style: dashed; border-top-color: var(--border-strong); }
+
+/* 含文字：用容器包裹 */
+.x-divider-text {
+  display: flex; align-items: center; gap: var(--space-3);
+  color: var(--fg-subtle); font-size: var(--fs-sm);
+  margin: var(--space-3) 0;
+}
+.x-divider-text::before, .x-divider-text::after {
+  content: ""; flex: 1; height: 1px; background: var(--border);
+}
+.x-divider-text--left::before { flex: 0 0 var(--space-3); }
+
+/* 竖向分隔 */
+.x-divider--vertical {
+  display: inline-block; width: 1px; height: 13px; margin: 0 var(--space-3);
+  background: var(--border-strong); border: 0;
+  vertical-align: middle;
+}

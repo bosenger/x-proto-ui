@@ -1,0 +1,88 @@
+/* ============================================================
+   x-ui · Button（纯展示型 · 纯 CSS 类，无 JS）
+   变体：primary / secondary / ghost / dashed / text / danger
+   尺寸：sm / md（默认）/ lg    形态：图标按钮 / block
+   ============================================================ */
+.x-btn {
+  --_h: var(--control-h-md);
+  --_pad: var(--control-pad-md);
+  --_fs: var(--fs-body);
+  --_radius: var(--radius-control);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: var(--_h);
+  padding: 0 var(--_pad);
+  border-radius: var(--_radius);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  color: var(--fg-base);
+  font: 500 var(--_fs) / 1 var(--font-sans);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--duration-fast), border-color var(--duration-fast),
+              filter var(--duration-fast), opacity var(--duration-fast);
+}
+.x-btn:hover { background: var(--bg-subtle); }
+.x-btn:active { transform: translateY(.5px); }
+
+/* —— 变体 —— */
+.x-btn--primary {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: var(--brand-fg);
+}
+.x-btn--primary:hover { background: var(--brand); filter: brightness(1.08); }
+
+.x-btn--secondary { /* = 默认 .x-btn */ }
+
+.x-btn--ghost { border-color: transparent; background: transparent; }
+.x-btn--ghost:hover { background: var(--bg-subtle); }
+
+.x-btn--dashed { border-style: dashed; background: transparent; }
+
+.x-btn--text {
+  border-color: transparent; background: transparent;
+  padding: 0 var(--space-1);
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.x-btn--text:hover { background: transparent; color: var(--brand); }
+
+.x-btn--danger {
+  border-color: var(--danger);
+  background: var(--danger);
+  color: var(--brand-fg);
+}
+.x-btn--danger:hover { background: var(--danger); filter: brightness(1.08); }
+
+/* —— 尺寸 —— */
+.x-btn--sm { --_h: var(--control-h-sm); --_pad: var(--control-pad-sm); --_fs: var(--fs-sm); --_radius: var(--radius-md); }
+.x-btn--lg { --_h: var(--control-h-lg); --_pad: var(--control-pad-lg); --_fs: var(--fs-h3); --_radius: var(--radius-lg); }
+
+/* —— 形态 —— */
+.x-btn--block { display: flex; width: 100%; }
+.x-btn--icon { padding: 0; width: var(--_h); } /* 正方形图标按钮 */
+
+/* —— 状态 —— */
+.x-btn[disabled], .x-btn--disabled { opacity: .5; cursor: not-allowed; }
+.x-btn[disabled]:hover, .x-btn--disabled:hover { filter: none; background: var(--bg-surface); }
+.x-btn--primary[disabled]:hover { background: var(--brand); }
+
+.x-btn--loading { cursor: default; }
+.x-btn__spinner {
+  width: 14px; height: 14px; flex: none;
+  border: 2px solid color-mix(in srgb, var(--brand-fg) 40%, transparent);
+  border-top-color: var(--brand-fg);
+  border-radius: 50%;
+  animation: x-spin .7s linear infinite;
+}
+.x-btn--secondary .x-btn__spinner,
+.x-btn--ghost .x-btn__spinner {
+  border-color: color-mix(in srgb, var(--fg-base) 30%, transparent);
+  border-top-color: var(--fg-base);
+}
+
+/* 图标随字号 */
+.x-btn svg { width: 1.15em; height: 1.15em; }

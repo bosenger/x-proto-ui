@@ -1,0 +1,41 @@
+/* ============================================================
+   x-ui · Toast 轻提示（命令式：xui.toast({...})）
+   右上角堆叠、自动消失；语义边框 + 状态点
+   ============================================================ */
+.x-toast-container {
+  position: fixed; top: 70px; right: 22px; z-index: var(--z-toast);
+  display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+  pointer-events: none;
+}
+.x-toast {
+  display: flex; align-items: center; gap: 10px;
+  min-width: 260px; max-width: 380px;
+  padding: 12px 14px; border-radius: 10px;
+  background: var(--bg-elevated); border: 1px solid var(--border);
+  box-shadow: var(--shadow-md); pointer-events: auto;
+  animation: x-toast-in var(--duration-base) var(--ease-standard);
+}
+.x-toast--success { border-color: var(--success); }
+.x-toast--danger  { border-color: var(--danger); }
+.x-toast--warning { border-color: var(--warning); }
+.x-toast--info    { border-color: var(--info); }
+.x-toast.is-leaving { animation: x-toast-out var(--duration-base) var(--ease-standard) forwards; }
+
+.x-toast__dot { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--info); }
+.x-toast--success .x-toast__dot { background: var(--success); }
+.x-toast--danger .x-toast__dot  { background: var(--danger); }
+.x-toast--warning .x-toast__dot { background: var(--warning); }
+.x-toast__msg { flex: 1; font-size: 13.5px; color: var(--fg-base); }
+.x-toast__close {
+  display: flex; flex: none; border: none; background: transparent;
+  color: var(--fg-subtle); cursor: pointer; padding: 0;
+}
+.x-toast__close:hover { color: var(--fg-base); }
+
+@keyframes x-toast-in { from { opacity: 0; transform: translateX(12px); } }
+@keyframes x-toast-out { to { opacity: 0; transform: translateX(12px); } }
+
+@media (max-width: 640px) {
+  .x-toast-container { top: auto; bottom: 22px; left: 16px; right: 16px; align-items: stretch; }
+  .x-toast { min-width: 0; max-width: 100%; }
+}

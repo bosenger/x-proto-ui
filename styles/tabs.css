@@ -1,0 +1,42 @@
+/* ============================================================
+   x-ui · Tabs（轻交互型 · <x-tabs> Custom Element）
+   变体：下划线（默认）/ 分段 segmented
+   结构：<x-tabs> 内 [data-tab] 头 + [data-panel] 面板（Light DOM）
+   ============================================================ */
+x-tabs { display: block; }
+
+.x-tabs__nav {
+  display: flex;
+  gap: var(--space-1);
+  border-bottom: 1px solid var(--border);
+}
+.x-tabs__tab {
+  position: relative;
+  padding: 9px 14px;
+  font-size: var(--fs-body);
+  color: var(--fg-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color var(--duration-fast);
+}
+.x-tabs__tab:hover { color: var(--fg-base); }
+.x-tabs__tab.active { color: var(--fg-base); font-weight: 600; }
+.x-tabs__tab.active::after {
+  content: ""; position: absolute; left: 10px; right: 10px; bottom: -1px;
+  height: 2px; border-radius: 2px; background: var(--brand);
+}
+
+.x-tabs__panel { padding-top: var(--space-4); }
+.x-tabs__panel[hidden] { display: none; }
+
+/* —— 分段变体 —— */
+x-tabs[variant="segmented"] .x-tabs__nav {
+  gap: 2px; padding: 3px; border: 1px solid var(--border);
+  border-radius: var(--radius-control); background: var(--bg-subtle);
+}
+x-tabs[variant="segmented"] .x-tabs__tab { border-radius: 7px; padding: 6px 14px; }
+x-tabs[variant="segmented"] .x-tabs__tab.active {
+  background: var(--bg-surface); box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+}
+x-tabs[variant="segmented"] .x-tabs__tab.active::after { display: none; }

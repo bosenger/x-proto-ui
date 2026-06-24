@@ -1,0 +1,54 @@
+/* ============================================================
+   x-ui · Tag 标签 / Badge 徽章
+   .x-tag 默认中性；语义 --success/--warning/--danger/--info；
+   形态 --solid（主色实底）/ --pill（药丸）/ 可关闭
+   ============================================================ */
+.x-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: var(--fs-caption);
+  line-height: 1;
+  padding: 3px 8px;
+  border-radius: var(--radius-md);
+  background: var(--bg-fill);
+  color: var(--fg-base);
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.x-tag--pill { border-radius: var(--radius-full); padding: 3px 11px; }
+.x-tag--outline { background: transparent; border-color: var(--border-strong); color: var(--fg-muted); }
+.x-tag--solid { background: var(--brand); color: var(--brand-fg); }
+
+.x-tag--success { background: var(--success-subtle); color: var(--success); }
+.x-tag--warning { background: var(--warning-subtle); color: var(--warning); }
+.x-tag--danger  { background: var(--danger-subtle);  color: var(--danger); }
+.x-tag--info    { background: var(--info-subtle);    color: var(--info); }
+
+.x-tag__close {
+  display: inline-flex; cursor: pointer; opacity: .7; margin-right: -2px;
+}
+.x-tag__close:hover { opacity: 1; }
+.x-tag__close svg { width: 11px; height: 11px; }
+
+/* —— 状态点（在线/离线指示）—— */
+.x-status { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-sm); color: var(--fg-base); }
+.x-status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--fg-subtle); }
+.x-status--success::before { background: var(--success); }
+.x-status--warning::before { background: var(--warning); }
+.x-status--danger::before  { background: var(--danger); }
+.x-status--info::before    { background: var(--info); }
+
+/* ============================================================
+   Badge 徽章：圆点 / 数字角标
+   ============================================================ */
+.x-badge { position: relative; display: inline-flex; }
+.x-badge__dot, .x-badge__count {
+  position: absolute; top: -4px; right: -4px;
+  background: var(--danger); color: #fff;
+  border: 1.5px solid var(--bg-surface);
+  border-radius: var(--radius-full);
+}
+.x-badge__dot { width: 8px; height: 8px; }
+.x-badge__count {
+  min-width: 18px; height: 18px; padding: 0 5px;
+  font-size: 11px; line-height: 15px; text-align: center; font-weight: 600;
+}

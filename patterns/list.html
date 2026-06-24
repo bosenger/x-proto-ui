@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" data-brand="neutral">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>x-ui 示例 · 列表页</title>
+  <link rel="stylesheet" href="../dist/x-ui.css">
+  <script src="../dist/x-ui.js" defer></script>
+  <style>
+    .ptop { position: fixed; inset: 0 0 auto 0; height: 56px; z-index: 50; display: flex; align-items: center; gap: 18px; padding: 0 22px; background: var(--bg-surface); border-bottom: 1px solid var(--border); }
+    .ptop .logo { width: 22px; height: 22px; border: 1.5px solid var(--accent); border-radius: 6px; }
+    .ptop .x-menu--horizontal { border: none; gap: 20px; }
+    .ptop .x-menu__item { padding: 18px 2px; text-decoration: none; }
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 84px 24px 60px; }
+    .head { display: flex; align-items: center; margin-bottom: 18px; }
+    .toolbar { display: flex; gap: 10px; margin-bottom: 14px; align-items: center; }
+  </style>
+</head>
+<body>
+  <div class="ptop">
+    <div class="logo"></div><strong style="color:var(--accent)">x-ui</strong>
+    <nav class="x-menu--horizontal x-menu">
+      <a class="x-menu__item is-active" href="list.html"><span>列表页</span></a>
+      <a class="x-menu__item" href="form.html"><span>表单页</span></a>
+      <a class="x-menu__item" href="detail.html"><span>详情页</span></a>
+      <a class="x-menu__item" href="dashboard.html"><span>仪表盘</span></a>
+    </nav>
+    <div style="flex:1"></div>
+    <button class="x-btn x-btn--secondary x-btn--sm" onclick="xui.toggleTheme()">切换底纹</button>
+  </div>
+
+  <div class="wrap">
+    <div class="head">
+      <div><div style="font-size:20px;font-weight:600">任务列表</div><div class="x-stat__label" style="margin:2px 0 0">共 128 条记录</div></div>
+      <button class="x-btn x-btn--primary" style="margin-left:auto" onclick="document.getElementById('nm').open()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14"/><path d="M12 5v14"/></svg>新建任务</button>
+    </div>
+
+    <div class="toolbar">
+      <div class="x-field" style="width:240px"><span class="x-field__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span><input class="x-input" placeholder="搜索任务……"></div>
+      <x-select placeholder="全部状态" style="width:140px"><option value="">全部状态</option><option value="run">运行</option><option value="warn">告警</option><option value="off">离线</option></x-select>
+      <button class="x-btn x-btn--secondary" style="margin-left:auto">筛选</button>
+    </div>
+
+    <div class="x-table-wrap">
+      <table class="x-table">
+        <thead><tr><th class="x-table__sort">名称</th><th>负责人</th><th>状态</th><th>更新时间</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr><td>用户中心同步</td><td>李雷</td><td><span class="x-tag x-tag--pill x-tag--success">运行</span></td><td style="color:var(--fg-muted)">06-23 09:12</td><td><a class="x-table__action" href="detail.html">详情</a></td></tr>
+          <tr><td>支付网关对账</td><td>韩梅</td><td><span class="x-tag x-tag--pill x-tag--warning">告警</span></td><td style="color:var(--fg-muted)">06-23 08:40</td><td><a class="x-table__action" href="detail.html">详情</a></td></tr>
+          <tr><td>消息队列消费</td><td>王芳</td><td><span class="x-tag x-tag--pill x-tag--danger">离线</span></td><td style="color:var(--fg-muted)">06-22 23:55</td><td><a class="x-table__action" href="detail.html">详情</a></td></tr>
+          <tr><td>日志归档</td><td>赵敏</td><td><span class="x-tag x-tag--pill x-tag--success">运行</span></td><td style="color:var(--fg-muted)">06-22 20:30</td><td><a class="x-table__action" href="detail.html">详情</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="display:flex;align-items:center;margin-top:14px">
+      <span class="x-stat__label">第 1-4 条 / 共 128 条</span>
+      <x-pagination total="128" page-size="4" page="1" style="margin-left:auto"></x-pagination>
+    </div>
+  </div>
+
+  <x-modal id="nm" title="新建任务" size="md">
+    <div class="x-form__item"><label class="x-form__label"><span class="x-form__required">*</span>任务名称</label><input class="x-input" placeholder="请输入任务名称"></div>
+    <div class="x-form__item" style="margin-bottom:0"><label class="x-form__label">执行频率</label><x-select placeholder="请选择" style="max-width:100%"><option>每日</option><option>每周</option><option>每月</option></x-select></div>
+  </x-modal>
+</body>
+</html>

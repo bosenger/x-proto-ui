@@ -1,0 +1,27 @@
+/* ============================================================
+   x-ui · Dropdown 下拉菜单（<x-dropdown>，light-dismiss）
+   点击触发，点空白 / Esc 关闭；危险项降饱和红；支持快捷键、分割线
+   ============================================================ */
+x-dropdown { display: inline-block; position: relative; }
+.x-dropdown__menu {
+  position: absolute; top: calc(100% + 6px); left: 0;
+  z-index: var(--z-popover); min-width: 180px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px; box-shadow: var(--shadow-md);
+  padding: 6px;
+}
+.x-dropdown__menu[hidden] { display: none; }
+x-dropdown[data-align="right"] .x-dropdown__menu { left: auto; right: 0; }
+
+.x-dropdown__item {
+  display: flex; align-items: center; gap: 9px;
+  padding: 8px 10px; border-radius: 7px;
+  font-size: var(--fs-body); color: var(--fg-base); cursor: pointer;
+}
+.x-dropdown__item:hover { background: var(--bg-subtle); }
+.x-dropdown__item--danger { color: var(--danger); }
+.x-dropdown__item--danger:hover { background: var(--danger-subtle); }
+.x-dropdown__item--disabled { color: var(--fg-subtle); cursor: not-allowed; }
+.x-dropdown__shortcut { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--fg-subtle); }
+.x-dropdown__divider { height: 1px; background: var(--border); margin: 5px 0; }

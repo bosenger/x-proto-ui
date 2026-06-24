@@ -1,0 +1,36 @@
+/* ============================================================
+   x-ui · Progress 进度（线性 / 环形）
+   线性：<div class="x-progress"><div class="x-progress__track">
+           <div class="x-progress__bar" style="width:68%"></div></div>
+         <span class="x-progress__label">68%</span></div>
+   语义 --success/--danger；不确定态 --indeterminate
+   环形：<div class="x-progress-circle" style="--_p:75">
+           <div class="x-progress-circle__inner">75%</div></div>
+   ============================================================ */
+.x-progress { display: flex; align-items: center; gap: 12px; }
+.x-progress__track { flex: 1; height: 8px; border-radius: var(--radius-full); background: var(--bg-fill); overflow: hidden; }
+.x-progress__bar { height: 100%; width: 0; border-radius: var(--radius-full); background: var(--brand); transition: width var(--duration-slow) var(--ease-standard); }
+.x-progress__label { width: 36px; flex: none; font-size: var(--fs-caption); color: var(--fg-muted); }
+.x-progress--success .x-progress__bar { background: var(--success); }
+.x-progress--success .x-progress__label { color: var(--success); }
+.x-progress--danger .x-progress__bar { background: var(--danger); }
+.x-progress--danger .x-progress__label { color: var(--danger); }
+
+.x-progress--indeterminate .x-progress__bar { width: 40%; animation: x-progress-loop 1.2s infinite var(--ease-standard); }
+@keyframes x-progress-loop { 0% { margin-left: -42%; } 100% { margin-left: 100%; } }
+
+/* 环形 */
+.x-progress-circle {
+  --_p: 0; --_size: 72px;
+  width: var(--_size); height: var(--_size); border-radius: 50%;
+  background: conic-gradient(var(--brand) calc(var(--_p) * 1%), var(--bg-fill) 0);
+  display: flex; align-items: center; justify-content: center;
+}
+.x-progress-circle--success { background: conic-gradient(var(--success) calc(var(--_p) * 1%), var(--bg-fill) 0); }
+.x-progress-circle--danger { background: conic-gradient(var(--danger) calc(var(--_p) * 1%), var(--bg-fill) 0); }
+.x-progress-circle__inner {
+  width: calc(var(--_size) - 18px); height: calc(var(--_size) - 18px);
+  border-radius: 50%; background: var(--bg-surface);
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--fs-body); font-weight: 600; color: var(--fg-base);
+}

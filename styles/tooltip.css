@@ -1,0 +1,40 @@
+/* ============================================================
+   x-ui · Tooltip 文字提示（纯 CSS · [data-tooltip] 属性驱动）
+   悬停 / 聚焦显示；深色 ink 气泡 + 箭头；4 方向
+   <button data-tooltip="提示文字" data-tooltip-pos="top">…</button>
+   ============================================================ */
+[data-tooltip] { position: relative; }
+[data-tooltip]::after,
+[data-tooltip]::before {
+  position: absolute; opacity: 0; pointer-events: none;
+  transition: opacity var(--duration-fast), transform var(--duration-fast);
+  z-index: var(--z-tooltip);
+}
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  background: var(--ink-bar); color: #fff;
+  font-size: var(--fs-caption); line-height: 1.4;
+  padding: 6px 10px; border-radius: 7px; white-space: nowrap;
+  box-shadow: var(--shadow-md);
+}
+[data-tooltip]::before { content: ""; border: 5px solid transparent; }
+
+/* 默认上方 */
+[data-tooltip]::after { bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(4px); }
+[data-tooltip]::before { bottom: calc(100% + 3px); left: 50%; transform: translateX(-50%); border-top-color: var(--ink-bar); }
+[data-tooltip]:hover::after, [data-tooltip]:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+[data-tooltip]:hover::before, [data-tooltip]:focus-visible::before { opacity: 1; }
+
+/* 下方 */
+[data-tooltip-pos="bottom"]::after { top: calc(100% + 8px); bottom: auto; transform: translateX(-50%) translateY(-4px); }
+[data-tooltip-pos="bottom"]::before { top: calc(100% + 3px); bottom: auto; border-top-color: transparent; border-bottom-color: var(--ink-bar); }
+[data-tooltip-pos="bottom"]:hover::after, [data-tooltip-pos="bottom"]:focus-visible::after { transform: translateX(-50%) translateY(0); }
+
+/* 左 / 右 */
+[data-tooltip-pos="left"]::after { right: calc(100% + 8px); left: auto; top: 50%; bottom: auto; transform: translateY(-50%) translateX(4px); }
+[data-tooltip-pos="left"]::before { right: calc(100% + 3px); left: auto; top: 50%; bottom: auto; transform: translateY(-50%); border: 5px solid transparent; border-left-color: var(--ink-bar); }
+[data-tooltip-pos="left"]:hover::after, [data-tooltip-pos="left"]:focus-visible::after { transform: translateY(-50%) translateX(0); }
+
+[data-tooltip-pos="right"]::after { left: calc(100% + 8px); top: 50%; bottom: auto; transform: translateY(-50%) translateX(-4px); }
+[data-tooltip-pos="right"]::before { left: calc(100% + 3px); top: 50%; bottom: auto; transform: translateY(-50%); border: 5px solid transparent; border-right-color: var(--ink-bar); }
+[data-tooltip-pos="right"]:hover::after, [data-tooltip-pos="right"]:focus-visible::after { transform: translateY(-50%) translateX(0); }

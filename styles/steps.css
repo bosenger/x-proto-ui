@@ -1,0 +1,29 @@
+/* ============================================================
+   x-ui · Steps 步骤条（纯 CSS）
+   节点态 wait / process(当前) / finish / error；水平 / 竖向
+   结构：.x-steps > (.x-step + .x-step__line)*
+   ============================================================ */
+.x-steps { display: flex; align-items: center; }
+.x-step { display: flex; align-items: center; gap: 10px; flex: none; }
+.x-step__node {
+  width: 28px; height: 28px; border-radius: 50%; flex: none;
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--fs-sm);
+  border: 1px solid var(--border-strong); color: var(--fg-subtle); background: transparent;
+}
+.x-step__node svg { width: 15px; height: 15px; }
+.x-step__label { font-size: var(--fs-sm); color: var(--fg-subtle); }
+.x-step__line { flex: 1; height: 1px; min-width: 24px; background: var(--border-strong); margin: 0 12px; }
+.x-step__line--done { background: var(--brand); }
+
+.x-step--finish .x-step__node { background: var(--brand); border-color: var(--brand); color: var(--brand-fg); }
+.x-step--finish .x-step__label { color: var(--fg-base); }
+.x-step--process .x-step__node { background: var(--brand); border-color: var(--brand); color: var(--brand-fg); font-weight: 600; }
+.x-step--process .x-step__label { color: var(--fg-base); font-weight: 500; }
+.x-step--error .x-step__node { border-color: var(--danger); color: var(--danger); }
+.x-step--error .x-step__label { color: var(--danger); }
+
+/* 竖向 */
+.x-steps--vertical { flex-direction: column; align-items: stretch; }
+.x-steps--vertical .x-step { align-items: flex-start; }
+.x-steps--vertical .x-step__line { width: 1px; height: auto; min-height: 24px; flex: none; margin: 4px 0 4px 13px; }

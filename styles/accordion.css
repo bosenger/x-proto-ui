@@ -1,0 +1,23 @@
+/* ============================================================
+   x-ui · Accordion 折叠面板（<x-accordion> / <x-accordion-item>）
+   高度过渡 200ms，chevron 旋转；单开 / 多开
+   ============================================================ */
+x-accordion { display: block; }
+.x-accordion__item, x-accordion-item {
+  display: block;
+  border: 1px solid var(--border); border-radius: 10px;
+  margin-bottom: 8px; overflow: hidden;
+}
+.x-accordion__head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px; cursor: pointer;
+  font-size: var(--fs-body); color: var(--fg-base); user-select: none;
+}
+.x-accordion__head:hover { background: var(--bg-subtle); }
+.x-accordion__chev {
+  margin-left: auto; flex: none; color: var(--fg-subtle);
+  transition: transform var(--duration-base);
+}
+.x-accordion__item.is-open .x-accordion__chev { transform: rotate(180deg); }
+.x-accordion__body { overflow: hidden; max-height: 0; transition: max-height var(--duration-base) var(--ease-standard); }
+.x-accordion__inner { padding: 0 14px 14px; font-size: var(--fs-sm); line-height: 1.6; color: var(--fg-muted); }

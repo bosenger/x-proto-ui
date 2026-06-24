@@ -1,0 +1,30 @@
+/* ============================================================
+   x-ui · Timeline 时间线
+   <div class="x-timeline">
+     <div class="x-timeline__item">
+       <div class="x-timeline__rail"><span class="x-timeline__dot"></span><span class="x-timeline__line"></span></div>
+       <div class="x-timeline__content"><div class="x-timeline__title">…</div><div class="x-timeline__time">…</div></div>
+     </div> …
+   </div>
+   节点语义色 --success/--warning/--danger/--info；--ring 进行中环；--spin 加载
+   ============================================================ */
+.x-timeline { }
+.x-timeline__item { display: flex; gap: 12px; }
+.x-timeline__rail { display: flex; flex-direction: column; align-items: center; }
+.x-timeline__dot { width: 11px; height: 11px; border-radius: 50%; background: var(--brand); margin-top: 5px; flex: none; }
+.x-timeline__dot--success { background: var(--success); }
+.x-timeline__dot--warning { background: var(--warning); }
+.x-timeline__dot--danger { background: var(--danger); }
+.x-timeline__dot--info { background: var(--info); }
+.x-timeline__dot--ring { background: var(--bg-surface); border: 2px solid var(--brand); width: 12px; height: 12px; }
+.x-timeline__dot--spin {
+  width: 14px; height: 14px; background: transparent;
+  border: 2px solid var(--bg-fill); border-top-color: var(--brand);
+  animation: x-spin .8s linear infinite;
+}
+.x-timeline__line { flex: 1; width: 1.5px; background: var(--border); margin: 4px 0; min-height: 14px; }
+.x-timeline__content { padding-bottom: 18px; }
+.x-timeline__item:last-child .x-timeline__line { display: none; }
+.x-timeline__item:last-child .x-timeline__content { padding-bottom: 0; }
+.x-timeline__title { font-size: var(--fs-body); color: var(--fg-base); }
+.x-timeline__time { font-family: var(--font-mono); font-size: 11px; color: var(--fg-subtle); margin-top: 2px; }

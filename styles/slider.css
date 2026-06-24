@@ -1,0 +1,34 @@
+/* ============================================================
+   x-ui · Slider 滑块
+   .x-slider 原生 input[type=range]（功能性单值，accent-color 着色）
+   .x-slider-rail 自定义轨道（用于刻度 / 区间双滑块的展示形态）
+   ============================================================ */
+.x-slider {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 6px; border-radius: var(--radius-full);
+  background: var(--bg-fill); accent-color: var(--brand);
+  outline: none; cursor: pointer;
+}
+.x-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--bg-surface); border: 2px solid var(--brand); cursor: pointer;
+}
+.x-slider::-moz-range-thumb {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--bg-surface); border: 2px solid var(--brand); cursor: pointer;
+}
+.x-slider:focus-visible { box-shadow: 0 0 0 3px var(--brand-subtle); }
+.x-slider:disabled { opacity: .6; cursor: not-allowed; }
+
+/* —— 自定义轨道（刻度 / 区间展示）—— */
+.x-slider-rail { position: relative; height: 6px; border-radius: var(--radius-full); background: var(--bg-fill); margin: 0 4px; }
+.x-slider-rail__fill { position: absolute; top: 0; height: 100%; border-radius: var(--radius-full); background: var(--brand); }
+.x-slider-rail__thumb {
+  position: absolute; top: -4px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--bg-surface); border: 2px solid var(--brand); transform: translateX(-50%);
+}
+.x-slider-rail--disabled { background: var(--bg-subtle); opacity: .7; }
+.x-slider-rail--disabled .x-slider-rail__fill { background: var(--border-strong); }
+.x-slider-rail--disabled .x-slider-rail__thumb { border-color: var(--border-strong); }
+.x-slider-marks { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; color: var(--fg-subtle); margin: 8px 4px 0; }

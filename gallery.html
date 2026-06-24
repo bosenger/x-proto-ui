@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" data-brand="neutral">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>x-ui · 组件总览 Gallery</title>
+  <link rel="stylesheet" href="dist/x-ui.css">
+  <script src="dist/x-ui.js" defer></script>
+  <style>
+    .top { position: fixed; inset: 0 0 auto 0; height: 56px; z-index: 50; display: flex; align-items: center; gap: 12px; padding: 0 22px; background: var(--bg-surface); border-bottom: 1px solid var(--border); }
+    .top .logo { width: 22px; height: 22px; border: 1.5px solid var(--accent); border-radius: 6px; }
+    .mono { font-family: var(--font-mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--fg-subtle); }
+    .seg { display: flex; gap: 2px; padding: 3px; border-radius: 7px; background: var(--bg-subtle); border: 1px solid var(--border); }
+    .seg button { padding: 5px 12px; border: none; border-radius: 5px; background: transparent; color: var(--fg-subtle); font: 500 12px var(--font-mono); cursor: pointer; }
+    .seg button[aria-pressed="true"] { background: var(--bg-surface); color: var(--fg-base); box-shadow: inset 0 0 0 1px var(--border-strong); }
+    .swatch { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 2px solid var(--bg-surface); box-shadow: 0 0 0 1px var(--border-strong); }
+    .swatch[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--fg-base); }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 84px 24px 80px; }
+    .tier { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-subtle); margin: 40px 0 4px; }
+    h1 { font-size: 26px; margin: 0 0 6px; }
+    h2 { font-size: 13px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .05em; color: var(--fg-subtle); margin: 0 0 14px; }
+    .card { border: 1px solid var(--border); border-radius: 14px; background: var(--bg-surface); padding: 22px; margin-bottom: 18px; }
+    .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .row + .row { margin-top: 14px; }
+    .col { display: flex; flex-direction: column; gap: 6px; }
+    .lbl { font-size: 13px; color: var(--fg-muted); }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .desc { color: var(--fg-muted); font-size: 13px; margin: 0 0 14px; }
+    @media (max-width: 720px) { .two { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div class="logo"></div>
+    <strong style="color:var(--accent)">x-ui</strong>
+    <span class="mono">组件总览</span>
+    <div style="flex:1"></div>
+    <span class="mono">底纹</span>
+    <div class="seg" id="themeSeg"><button data-theme-btn="light" aria-pressed="true">纸面</button><button data-theme-btn="dark">蓝图</button></div>
+    <span class="mono" style="margin-left:6px">主色</span>
+    <div class="row" id="brandSeg" style="gap:8px">
+      <span class="swatch" data-brand-btn="neutral" aria-pressed="true" style="background:#565656"></span>
+      <span class="swatch" data-brand-btn="blue" style="background:#4F6F9E"></span>
+      <span class="swatch" data-brand-btn="teal" style="background:#3E8E8E"></span>
+      <span class="swatch" data-brand-btn="violet" style="background:#7A6BA8"></span>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h1>组件总览</h1>
+    <p class="desc">x-ui 全部组件（P0–P4）。低保真线框风 · 纸面/蓝图 × 四主色随心切换 · 全库联动。示例页见 <a href="patterns/list.html" style="color:var(--brand)">patterns/</a>。</p>
+
+    <!-- ===================== P0 ===================== -->
+    <div class="tier">— P0 · 基础组件</div>
+    <div class="card">
+      <h2>Button 按钮</h2>
+      <div class="row">
+        <button class="x-btn x-btn--primary">主要</button>
+        <button class="x-btn x-btn--secondary">次要</button>
+        <button class="x-btn x-btn--ghost">幽灵</button>
+        <button class="x-btn x-btn--dashed">虚线</button>
+        <button class="x-btn x-btn--text">文字链接</button>
+        <button class="x-btn x-btn--danger">危险</button>
+      </div>
+      <div class="row">
+        <button class="x-btn x-btn--primary x-btn--sm">小号</button>
+        <button class="x-btn x-btn--primary">中号</button>
+        <button class="x-btn x-btn--primary x-btn--lg">大号</button>
+        <button class="x-btn x-btn--secondary" disabled>禁用</button>
+        <button class="x-btn x-btn--primary x-btn--loading"><span class="x-btn__spinner"></span>加载中</button>
+        <button class="x-btn x-btn--secondary x-btn--icon" data-tooltip="新增"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14"/><path d="M12 5v14"/></svg></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Input 输入框 · Select 选择器</h2>
+      <div class="two">
+        <div class="col"><span class="lbl">默认</span><input class="x-input" placeholder="占位文字……"></div>
+        <div class="col"><span class="lbl">错误</span><input class="x-input x-input--error" value="非法输入"><span class="x-input__error-text">⚠ 校验失败提示</span></div>
+        <div class="col"><span class="lbl">搜索</span><div class="x-field"><span class="x-field__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span><input class="x-input" placeholder="搜索……"></div></div>
+        <div class="col"><span class="lbl">前缀</span><div class="x-field"><span class="x-field__affix x-field__affix--prefix">¥</span><input class="x-input" value="1,200"></div></div>
+        <div class="col"><span class="lbl">单选</span><x-select placeholder="请选择"><option value="1">选项一</option><option value="2">选项二</option><option value="3">选项三</option></x-select></div>
+        <div class="col"><span class="lbl">多选（Tag 回显）</span><x-select placeholder="可多选" multiple><option value="a" selected>标签 A</option><option value="b" selected>标签 B</option><option value="c">标签 C</option><option value="d">标签 D</option></x-select></div>
+      </div>
+      <div class="row" style="margin-top:14px"><textarea class="x-textarea" rows="2" placeholder="多行输入……" style="max-width:420px"></textarea></div>
+    </div>
+
+    <div class="card">
+      <h2>Checkbox · Radio · Switch</h2>
+      <div class="row">
+        <label class="x-check"><input type="checkbox" class="x-checkbox" checked>已选</label>
+        <label class="x-check"><input type="checkbox" class="x-checkbox">未选</label>
+        <label class="x-check"><input type="checkbox" class="x-checkbox" id="indet">半选</label>
+        <label class="x-check"><input type="checkbox" class="x-checkbox" disabled>禁用</label>
+      </div>
+      <div class="row">
+        <label class="x-check"><input type="radio" name="r" class="x-radio" checked>单选 A</label>
+        <label class="x-check"><input type="radio" name="r" class="x-radio">单选 B</label>
+        <span class="x-radio-group--button">
+          <label><input type="radio" name="rb" checked>日</label>
+          <label><input type="radio" name="rb">周</label>
+          <label><input type="radio" name="rb">月</label>
+        </span>
+      </div>
+      <div class="row">
+        <label class="x-switch-field"><input type="checkbox" class="x-switch" checked>开</label>
+        <label class="x-switch-field"><input type="checkbox" class="x-switch">关</label>
+        <label class="x-switch-field"><input type="checkbox" class="x-switch x-switch--sm" checked>小尺寸</label>
+        <label class="x-switch-field"><input type="checkbox" class="x-switch" disabled checked>禁用</label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Card · Tag · Badge · Avatar · Divider</h2>
+      <div class="x-grid x-grid--3" style="margin-bottom:18px">
+        <div class="x-card"><div class="x-card__head"><span class="x-card__title">带标题</span><span class="x-card__extra">更多</span></div><div class="x-card__body lbl">基础卡片内容，线框风不投影。</div></div>
+        <div class="x-card x-card--hoverable"><div class="x-card__body"><div class="x-card__title" style="margin-bottom:6px">可悬浮</div><div class="lbl">hover 抬升 + 阴影。</div></div></div>
+        <div class="x-card x-card--selected"><div class="x-card__body"><div class="x-card__title" style="margin-bottom:6px">选中态</div><div class="lbl">主色边框 + 浅底。</div></div></div>
+      </div>
+      <div class="row">
+        <span class="x-tag x-tag--pill x-tag--solid">主色</span>
+        <span class="x-tag x-tag--pill x-tag--success">成功</span>
+        <span class="x-tag x-tag--pill x-tag--warning">警告</span>
+        <span class="x-tag x-tag--pill x-tag--danger">危险</span>
+        <span class="x-tag x-tag--pill x-tag--info">信息</span>
+        <span class="x-tag x-tag--outline">描边</span>
+        <span class="x-tag">可关闭<span class="x-tag__close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></span>
+        <span class="x-status x-status--success">在线</span>
+        <span class="x-badge"><button class="x-btn x-btn--secondary x-btn--icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></button><span class="x-badge__count">5</span></span>
+      </div>
+      <div class="row" style="margin-top:16px">
+        <span class="x-avatar x-avatar--xs">A</span>
+        <span class="x-avatar x-avatar--sm">B</span>
+        <span class="x-avatar">李</span>
+        <span class="x-avatar x-avatar--lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        <span class="x-avatar-group"><span class="x-avatar x-avatar--sm">甲</span><span class="x-avatar x-avatar--sm">乙</span><span class="x-avatar x-avatar--sm">丙</span><span class="x-avatar x-avatar--sm x-avatar--more">+5</span></span>
+      </div>
+      <div class="x-divider-text">或</div>
+    </div>
+
+    <!-- ===================== P1 ===================== -->
+    <div class="tier">— P1 · 交互组件</div>
+    <div class="card">
+      <h2>Tabs 标签页</h2>
+      <x-tabs style="margin-bottom:18px">
+        <div class="x-tabs__nav"><button class="x-tabs__tab" data-tab="a">概览</button><button class="x-tabs__tab" data-tab="b">明细</button><button class="x-tabs__tab" data-tab="c">设置</button></div>
+        <div class="x-tabs__panel" data-panel="a">概览内容</div>
+        <div class="x-tabs__panel" data-panel="b" hidden>明细内容</div>
+        <div class="x-tabs__panel" data-panel="c" hidden>设置内容</div>
+      </x-tabs>
+      <x-tabs variant="segmented">
+        <div class="x-tabs__nav"><button class="x-tabs__tab" data-tab="x">日</button><button class="x-tabs__tab" data-tab="y">周</button><button class="x-tabs__tab" data-tab="z">月</button></div>
+        <div class="x-tabs__panel" data-panel="x">按日聚合</div>
+        <div class="x-tabs__panel" data-panel="y" hidden>按周聚合</div>
+        <div class="x-tabs__panel" data-panel="z" hidden>按月聚合</div>
+      </x-tabs>
+    </div>
+
+    <div class="two">
+      <div class="card">
+        <h2>Accordion 折叠面板</h2>
+        <x-accordion>
+          <x-accordion-item title="什么是 x-ui？" open>零运行时、纯 HTML 引入的 Web Components UI 库。</x-accordion-item>
+          <x-accordion-item title="如何换肤？">改根节点 data-theme / data-brand 两个属性即可。</x-accordion-item>
+          <x-accordion-item title="支持暗色吗？">支持，纸面 / 蓝图两套主题。</x-accordion-item>
+        </x-accordion>
+      </div>
+      <div class="card">
+        <h2>Dropdown 下拉菜单</h2>
+        <x-dropdown>
+          <button class="x-btn x-btn--secondary" data-trigger>操作菜单 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="x-dropdown__menu" hidden>
+            <div class="x-dropdown__item" data-value="edit">编辑<span class="x-dropdown__shortcut">⌘E</span></div>
+            <div class="x-dropdown__item" data-value="copy">复制</div>
+            <div class="x-dropdown__divider"></div>
+            <div class="x-dropdown__item x-dropdown__item--danger" data-value="del">删除</div>
+          </div>
+        </x-dropdown>
+        <p class="lbl" style="margin:14px 0 0">点击触发，点空白 / Esc 关闭。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Modal · Drawer · Toast · Tooltip</h2>
+      <div class="row">
+        <button class="x-btn x-btn--secondary" onclick="document.getElementById('gm').open()">打开模态框</button>
+        <button class="x-btn x-btn--secondary" onclick="document.getElementById('gc').open()">危险确认框</button>
+        <button class="x-btn x-btn--secondary" onclick="document.getElementById('gd').open()">右侧抽屉</button>
+        <button class="x-btn x-btn--secondary" onclick="xui.toast.success('数据已保存')">成功 Toast</button>
+        <button class="x-btn x-btn--secondary" onclick="xui.toast.danger('同步失败，请重试')">失败 Toast</button>
+        <button class="x-btn x-btn--secondary" onclick="xui.toast.info('有 3 条新通知')">信息 Toast</button>
+        <button class="x-btn x-btn--dashed" data-tooltip="这是一条文字提示">悬停看 Tooltip</button>
+      </div>
+      <x-modal id="gm" title="编辑任务" size="md"><p style="margin-top:0">标准模态框，正文可放任意内容。</p><input class="x-input" placeholder="任务名称……"></x-modal>
+      <x-modal id="gc" title="删除该任务？" size="sm" confirm ok-text="确认删除">此操作不可恢复，确定删除「支付网关」吗？</x-modal>
+      <x-drawer id="gd" title="筛选条件" placement="right"><p style="margin-top:0">右侧抽屉内容区。</p><label class="x-check"><input type="checkbox" class="x-checkbox" checked>仅看运行中</label></x-drawer>
+    </div>
+
+    <div class="card">
+      <h2>Breadcrumb · Pagination · Steps</h2>
+      <div class="x-breadcrumb" style="margin-bottom:18px">
+        <span class="x-breadcrumb__item">首页</span><span class="x-breadcrumb__sep">/</span>
+        <span class="x-breadcrumb__item">组件</span><span class="x-breadcrumb__sep">/</span>
+        <span class="x-breadcrumb__item x-breadcrumb__item--current">当前页</span>
+      </div>
+      <x-pagination total="128" page-size="10" page="1" style="margin-bottom:20px"></x-pagination>
+      <div class="x-steps">
+        <div class="x-step x-step--finish"><span class="x-step__node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span><span class="x-step__label">已完成</span></div>
+        <span class="x-step__line x-step__line--done"></span>
+        <div class="x-step x-step--process"><span class="x-step__node">2</span><span class="x-step__label">进行中</span></div>
+        <span class="x-step__line"></span>
+        <div class="x-step"><span class="x-step__node">3</span><span class="x-step__label">待开始</span></div>
+      </div>
+    </div>
+
+    <!-- ===================== P2 ===================== -->
+    <div class="tier">— P2 · 数据组件</div>
+    <div class="card">
+      <h2>Table 表格</h2>
+      <div class="x-table-wrap">
+        <table class="x-table">
+          <thead><tr><th class="x-table__col-check"><input type="checkbox" class="x-checkbox" checked></th><th class="x-table__sort">名称 <span class="x-table__sort-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg></span></th><th>负责人</th><th>状态</th><th>操作</th></tr></thead>
+          <tbody>
+            <tr class="is-selected"><td><input type="checkbox" class="x-checkbox" checked></td><td>用户中心</td><td>李雷</td><td><span class="x-tag x-tag--pill x-tag--success">运行</span></td><td><span class="x-table__action">编辑</span></td></tr>
+            <tr><td><input type="checkbox" class="x-checkbox"></td><td>支付网关</td><td>韩梅</td><td><span class="x-tag x-tag--pill x-tag--warning">告警</span></td><td><span class="x-table__action">编辑</span></td></tr>
+            <tr><td><input type="checkbox" class="x-checkbox"></td><td>消息队列</td><td>王芳</td><td><span class="x-tag x-tag--pill x-tag--danger">离线</span></td><td><span class="x-table__action">编辑</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="two">
+      <div class="card">
+        <h2>Progress 进度</h2>
+        <div class="x-progress" style="margin-bottom:12px"><div class="x-progress__track"><div class="x-progress__bar" style="width:68%"></div></div><span class="x-progress__label">68%</span></div>
+        <div class="x-progress x-progress--success" style="margin-bottom:12px"><div class="x-progress__track"><div class="x-progress__bar" style="width:100%"></div></div><span class="x-progress__label">完成</span></div>
+        <div class="x-progress x-progress--danger" style="margin-bottom:20px"><div class="x-progress__track"><div class="x-progress__bar" style="width:32%"></div></div><span class="x-progress__label">异常</span></div>
+        <div class="row">
+          <div class="x-progress-circle" style="--_p:75"><div class="x-progress-circle__inner">75%</div></div>
+          <div class="x-progress-circle x-progress-circle--success" style="--_p:40"><div class="x-progress-circle__inner">40%</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Stat 统计卡</h2>
+        <div class="x-stat" style="margin-bottom:18px"><div class="x-stat__label">本月活跃</div><div class="x-stat__row"><span class="x-stat__value">12,840</span><span class="x-stat__delta x-stat__delta--up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>12.5%</span></div></div>
+        <div class="x-stat"><div class="x-stat__label">错误率</div><div class="x-stat__row"><span class="x-stat__value">0.42%</span><span class="x-stat__delta x-stat__delta--down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>3.1%</span></div></div>
+      </div>
+    </div>
+
+    <div class="two">
+      <div class="card">
+        <h2>Skeleton · Empty · Spin</h2>
+        <div class="row" style="align-items:flex-start;gap:14px;margin-bottom:16px">
+          <div class="x-skeleton x-skeleton--avatar"></div>
+          <div style="flex:1"><div class="x-skeleton x-skeleton--title"></div><div class="x-skeleton x-skeleton--text" style="width:80%"></div><div class="x-skeleton x-skeleton--text" style="width:60%"></div></div>
+        </div>
+        <div class="row">
+          <div class="x-empty x-empty--inline" style="flex:1"><div class="x-empty__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3-3-6 6"/></svg></div><div class="x-empty__desc">暂无数据</div></div>
+          <div style="flex:1;display:flex;justify-content:center;gap:20px"><span class="x-spin x-spin--sm"></span><span class="x-spin"></span><span class="x-spin x-spin--lg"></span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Tree 树形</h2>
+        <div class="x-tree">
+          <details class="x-tree-node" open>
+            <summary class="x-tree__row"><span class="x-tree__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m9 18 6-6-6-6"/></svg></span><input type="checkbox" class="x-checkbox" checked><span class="x-tree__label">设计系统</span></summary>
+            <div class="x-tree__children">
+              <label class="x-tree__row"><span class="x-tree__chev x-tree__chev--leaf"></span><input type="checkbox" class="x-checkbox"><span class="x-tree__label">基础令牌</span></label>
+              <label class="x-tree__row"><span class="x-tree__chev x-tree__chev--leaf"></span><input type="checkbox" class="x-checkbox" checked><span class="x-tree__label">语义令牌</span></label>
+            </div>
+          </details>
+          <details class="x-tree-node">
+            <summary class="x-tree__row"><span class="x-tree__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m9 18 6-6-6-6"/></svg></span><input type="checkbox" class="x-checkbox"><span class="x-tree__label">组件库</span></summary>
+            <div class="x-tree__children">
+              <label class="x-tree__row"><span class="x-tree__chev x-tree__chev--leaf"></span><input type="checkbox" class="x-checkbox"><span class="x-tree__label">P0 基础</span></label>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Timeline 时间线</h2>
+      <div class="x-timeline">
+        <div class="x-timeline__item"><div class="x-timeline__rail"><span class="x-timeline__dot"></span><span class="x-timeline__line"></span></div><div class="x-timeline__content"><div class="x-timeline__title">提交需求</div><div class="x-timeline__time">06-20 10:24</div></div></div>
+        <div class="x-timeline__item"><div class="x-timeline__rail"><span class="x-timeline__dot x-timeline__dot--success"></span><span class="x-timeline__line"></span></div><div class="x-timeline__content"><div class="x-timeline__title">设计评审</div><div class="x-timeline__time">06-21 14:00</div></div></div>
+        <div class="x-timeline__item"><div class="x-timeline__rail"><span class="x-timeline__dot x-timeline__dot--spin"></span></div><div class="x-timeline__content"><div class="x-timeline__title">开发中…</div><div class="x-timeline__time">进行中</div></div></div>
+      </div>
+    </div>
+
+    <!-- ===================== P3 ===================== -->
+    <div class="tier">— P3 · 高级组件</div>
+    <div class="two">
+      <div class="card"><h2>DatePicker 日期选择</h2><x-datepicker value="2026-06-23"></x-datepicker><p class="lbl" style="margin:14px 0 0">今天描边、选中实底，可切月份。</p></div>
+      <div class="card"><h2>Cascader 级联选择</h2><x-cascader placeholder="选择地区"></x-cascader><p class="lbl" style="margin:14px 0 0">两列联动，选末级回显路径。</p></div>
+    </div>
+    <div class="card"><h2>Upload 上传</h2><x-upload hint="支持 PDF / PNG / JPG，单文件 ≤ 10MB"></x-upload></div>
+    <div class="card">
+      <h2>Form 表单校验</h2>
+      <div class="x-form__section">基本信息</div>
+      <div class="x-grid x-grid--2" style="margin-bottom:6px">
+        <div class="x-form__item"><label class="x-form__label"><span class="x-form__required">*</span>任务名称</label><input class="x-input x-input--success" value="数据同步任务"><span class="x-form__success"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>可用</span></div>
+        <div class="x-form__item"><label class="x-form__label"><span class="x-form__required">*</span>执行频率</label><input class="x-input x-input--error" placeholder="请选择"><span class="x-form__error">⚠ 此项为必填</span></div>
+      </div>
+      <div class="x-form__item"><label class="x-form__label">备注</label><input class="x-input" placeholder="选填……"><span class="x-form__help">用于团队内部备注，不对外展示</span></div>
+      <div class="x-form__footer"><button class="x-btn x-btn--secondary">重置</button><button class="x-btn x-btn--primary">提交</button></div>
+    </div>
+
+    <!-- ===================== P4 ===================== -->
+    <div class="tier">— P4 · 扩展组件（对标 antd）</div>
+    <div class="card">
+      <h2>Alert 警告提示</h2>
+      <div class="col" style="gap:10px">
+        <div class="x-alert x-alert--info"><span class="x-alert__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><span class="x-alert__msg">这是一条普通的提示信息</span></div>
+        <div class="x-alert x-alert--success"><span class="x-alert__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></span><span class="x-alert__msg">数据已成功保存</span></div>
+        <div class="x-alert x-alert--warning x-alert--with-desc"><span class="x-alert__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></span><div class="x-alert__body"><div class="x-alert__title">配额即将用尽</div><div class="x-alert__desc">当前用量已达 90%，建议清理历史数据或升级套餐。</div></div></div>
+        <div class="x-alert x-alert--danger"><span class="x-alert__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></span><span class="x-alert__msg">同步失败，请检查网络后重试（可关闭）</span><button class="x-btn x-btn--danger x-btn--sm">重试</button><button class="x-alert__close" data-x-close><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+      </div>
+    </div>
+
+    <div class="two">
+      <div class="card">
+        <h2>InputNumber 数字输入</h2>
+        <div class="row" style="align-items:flex-end">
+          <div class="col"><span class="lbl">默认</span><x-input-number value="3" min="0" max="99"></x-input-number></div>
+          <div class="col"><span class="lbl">带单位</span><x-input-number value="1200" step="100" unit="¥"></x-input-number></div>
+          <div class="col"><span class="lbl">禁用</span><x-input-number value="100" disabled></x-input-number></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Slider 滑块</h2>
+        <div class="row" style="justify-content:space-between"><span class="lbl">基础</span><span class="mono" style="color:var(--brand)" id="sv">40</span></div>
+        <input type="range" class="x-slider" min="0" max="100" value="40" oninput="document.getElementById('sv').textContent=this.value" style="margin:8px 0 18px">
+        <span class="lbl">带刻度</span>
+        <div class="x-slider-rail" style="margin-top:8px"><div class="x-slider-rail__fill" style="width:40%"></div><div class="x-slider-rail__thumb" style="left:40%"></div></div>
+        <div class="x-slider-marks"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Menu 导航菜单</h2>
+      <div class="x-menu--horizontal x-menu" style="margin-bottom:18px"><div class="x-menu__item is-active"><span>仪表盘</span></div><div class="x-menu__item"><span>任务</span></div><div class="x-menu__item"><span>团队</span></div><div class="x-menu__item"><span>设置</span></div></div>
+      <div style="max-width:240px;border:1px solid var(--border);border-radius:12px;padding:8px">
+        <div class="x-menu">
+          <div class="x-menu__item is-active"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg><span>仪表盘</span></div>
+          <div class="x-menu__item"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>团队</span></div>
+          <details class="x-menu__sub" open>
+            <summary><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg><span>项目</span><svg class="x-menu__sub-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m9 18 6-6-6-6"/></svg></summary>
+            <div class="x-menu__sub-body"><div class="x-menu__sub-item is-active">同步任务</div><div class="x-menu__sub-item">归档任务</div></div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <p class="mono" style="margin-top:48px;text-align:center">x-ui v0.1.0 · 全部 P0–P4 组件 · 双击即见 · <a href="patterns/list.html" style="color:var(--brand)">看示例页 →</a></p>
+  </div>
+
+  <script>
+    addEventListener('DOMContentLoaded', () => {
+      const ts = document.getElementById('themeSeg');
+      ts.addEventListener('click', e => { const b = e.target.closest('[data-theme-btn]'); if (!b) return; xui.setTheme(b.dataset.themeBtn); ts.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); });
+      const bs = document.getElementById('brandSeg');
+      bs.addEventListener('click', e => { const b = e.target.closest('[data-brand-btn]'); if (!b) return; xui.setBrand(b.dataset.brandBtn); bs.querySelectorAll('[data-brand-btn]').forEach(x => x.setAttribute('aria-pressed', x === b)); });
+      const t = xui.getTheme(), br = xui.getBrand();
+      ts.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x.dataset.themeBtn === t));
+      bs.querySelectorAll('[data-brand-btn]').forEach(x => x.setAttribute('aria-pressed', x.dataset.brandBtn === br));
+      const ind = document.getElementById('indet'); if (ind) ind.indeterminate = true;
+    });
+  </script>
+</body>
+</html>

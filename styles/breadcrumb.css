@@ -1,0 +1,15 @@
+/* ============================================================
+   x-ui · Breadcrumb 面包屑（纯 CSS）
+   末项为当前页（不可点）；分隔符 / 或 chevron
+   ============================================================ */
+.x-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: var(--fs-sm); flex-wrap: wrap; }
+.x-breadcrumb__item {
+  display: inline-flex; align-items: center; gap: 5px;
+  color: var(--fg-muted); cursor: pointer;
+  transition: color var(--duration-fast);
+}
+.x-breadcrumb__item:hover { color: var(--brand); }
+.x-breadcrumb__item--current { color: var(--fg-base); font-weight: 500; cursor: default; }
+.x-breadcrumb__item--current:hover { color: var(--fg-base); }
+.x-breadcrumb__sep { display: inline-flex; color: var(--fg-subtle); }
+.x-breadcrumb__sep svg { width: 13px; height: 13px; }

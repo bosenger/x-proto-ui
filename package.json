@@ -1,0 +1,58 @@
+{
+  "name": "x-proto-ui",
+  "version": "0.1.0",
+  "description": "零运行时 · 纯 HTML 引入 · 主题化 Web Components UI 库（面向原型 / 中后台）。Zero-runtime, theme-able Web Components UI kit you drop into plain HTML.",
+  "license": "MIT",
+  "author": "senger bo",
+  "type": "module",
+  "keywords": [
+    "web-components",
+    "custom-elements",
+    "ui",
+    "ui-kit",
+    "component-library",
+    "css-variables",
+    "design-tokens",
+    "zero-runtime",
+    "no-build",
+    "prototype",
+    "theme",
+    "dark-mode"
+  ],
+  "main": "dist/x-ui.js",
+  "module": "dist/x-ui.esm.js",
+  "style": "dist/x-ui.css",
+  "unpkg": "dist/x-ui.js",
+  "jsdelivr": "dist/x-ui.js",
+  "sideEffects": true,
+  "exports": {
+    ".": {
+      "import": "./dist/x-ui.esm.js",
+      "default": "./dist/x-ui.js"
+    },
+    "./css": "./dist/x-ui.css",
+    "./style.css": "./dist/x-ui.css",
+    "./tokens/*": "./tokens/*",
+    "./styles/*": "./styles/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "tokens",
+    "styles",
+    "core",
+    "components"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "watch": "node build.mjs --watch",
+    "prepublishOnly": "node build.mjs"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  }
+}

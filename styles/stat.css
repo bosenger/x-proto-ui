@@ -1,0 +1,16 @@
+/* ============================================================
+   x-ui · Stat 统计数值卡
+   <div class="x-stat"><div class="x-stat__label">本月活跃</div>
+     <div class="x-stat__row"><span class="x-stat__value">12,840</span>
+       <span class="x-stat__delta x-stat__delta--up">▲ 12.5%</span></div></div>
+   ============================================================ */
+.x-stat__label { font-size: var(--fs-sm); color: var(--fg-muted); margin-bottom: 6px; }
+.x-stat__row { display: flex; align-items: baseline; gap: 10px; }
+.x-stat__value { font-size: var(--fs-display); font-weight: 600; color: var(--fg-base); line-height: 1.1; }
+.x-stat__value--md { font-size: var(--fs-h1); }
+.x-stat__delta { display: inline-flex; align-items: center; gap: 3px; font-size: var(--fs-sm); }
+.x-stat__delta svg { width: 13px; height: 13px; }
+.x-stat__delta--up { color: var(--success); }
+.x-stat__delta--down { color: var(--danger); }
+.x-stat__delta--muted { color: var(--fg-muted); }
+.x-stat__delta--warning { color: var(--warning); }

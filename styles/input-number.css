@@ -1,0 +1,33 @@
+/* ============================================================
+   x-ui · InputNumber 数字输入框（<x-input-number>）
+   步进器加减、单位后缀、禁用
+   ============================================================ */
+x-input-number { display: inline-block; }
+.x-input-number {
+  display: inline-flex; align-items: stretch;
+  height: var(--control-h-md);
+  border: 1px solid var(--border-strong); border-radius: var(--radius-control);
+  overflow: hidden; background: var(--bg-surface);
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+}
+.x-input-number:focus-within { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-subtle); }
+.x-input-number__field {
+  width: 62px; border: none; text-align: center;
+  font: var(--fs-body) var(--font-sans); color: var(--fg-base);
+  background: transparent; outline: none;
+}
+.x-input-number__unit {
+  display: flex; align-items: center; padding: 0 10px;
+  border-left: 1px solid var(--border); color: var(--fg-subtle); font-size: var(--fs-sm);
+}
+.x-input-number__steppers { display: flex; flex-direction: column; width: 28px; border-left: 1px solid var(--border); }
+.x-input-number__step {
+  flex: 1; border: none; background: var(--bg-surface); color: var(--fg-muted);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.x-input-number__step:hover { color: var(--brand); }
+.x-input-number__step--up { border-bottom: 1px solid var(--border); }
+.x-input-number.is-disabled {
+  opacity: .7; background: var(--bg-subtle); border-color: var(--border); cursor: not-allowed;
+}
+.x-input-number.is-disabled .x-input-number__field { color: var(--fg-subtle); }

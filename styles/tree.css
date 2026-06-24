@@ -1,0 +1,29 @@
+/* ============================================================
+   x-ui · Tree 树形（纯 CSS · 原生 <details>，无 JS）
+   <div class="x-tree">
+     <details class="x-tree-node" open>
+       <summary class="x-tree__row"><span class="x-tree__chev">▸</span>
+         <input type="checkbox" class="x-checkbox"><span class="x-tree__label">设计系统</span></summary>
+       <div class="x-tree__children"> … 叶子用 .x-tree__row（无 chevron）… </div>
+     </details>
+   </div>
+   ============================================================ */
+.x-tree { font-size: var(--fs-body); }
+.x-tree-node { }
+.x-tree__row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 0; cursor: pointer; list-style: none;
+  color: var(--fg-base);
+}
+.x-tree__row::-webkit-details-marker, .x-tree__row::marker { display: none; content: ""; }
+.x-tree__row:hover { color: var(--brand); }
+.x-tree__chev {
+  flex: none; color: var(--fg-subtle);
+  transition: transform var(--duration-base);
+  display: inline-flex;
+}
+.x-tree-node[open] > .x-tree__row .x-tree__chev { transform: rotate(90deg); }
+.x-tree__chev--leaf { visibility: hidden; }
+.x-tree__label { color: var(--fg-base); }
+.x-tree__children { padding-left: 30px; }
+.x-tree__children .x-tree__label { color: var(--fg-muted); }

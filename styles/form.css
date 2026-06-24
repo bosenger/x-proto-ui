@@ -1,0 +1,24 @@
+/* ============================================================
+   x-ui · Form 表单（纯 CSS · 标签上置）
+   必填星号、帮助文案、错误 / 成功校验态、分节标题、底部操作区
+   ============================================================ */
+.x-form__section {
+  font-family: var(--mono); font-size: 11px; color: var(--fg-subtle);
+  padding-bottom: 8px; border-bottom: 1px solid var(--border); margin-bottom: 16px;
+}
+.x-form__item { margin-bottom: 16px; }
+.x-form__label { display: block; font-size: var(--fs-sm); color: var(--fg-base); margin-bottom: 6px; }
+.x-form__required { color: var(--danger); margin-right: 2px; }
+.x-form__help { display: block; font-size: var(--fs-caption); color: var(--fg-subtle); margin-top: 5px; }
+.x-form__error { display: flex; align-items: center; gap: 4px; font-size: var(--fs-caption); color: var(--danger); margin-top: 5px; }
+.x-form__success { display: flex; align-items: center; gap: 4px; font-size: var(--fs-caption); color: var(--success); margin-top: 5px; }
+.x-form__footer {
+  display: flex; justify-content: flex-end; gap: 10px;
+  padding-top: 16px; margin-top: 4px; border-top: 1px solid var(--border);
+}
+
+/* 校验成功态输入（错误态见 input.css 的 --error） */
+.x-input--success, .x-textarea--success {
+  border-color: var(--success);
+  box-shadow: 0 0 0 3px var(--success-subtle);
+}
